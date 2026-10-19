@@ -18,12 +18,13 @@ download is a separately typeset letter-size document with clickable sources.
 
 ## Content to confirm
 
-- The brief supplied an XC 5K of 18:48. MileSplit showed 19:52.05 on October 19,
-  2026. The latter is used until a published source confirms the faster mark.
-- GPA is the parent-provided 3.8-4.0 range, labeled “Reported range.” Replace with
-  an exact value and weighted/unweighted basis when confirmed.
-- `email` is intentionally empty. Enter a dedicated recruiting address to enable
-  email contact links in the website and PDF. Until then, connection uses Runcruit.
+- The family confirmed an XC 5K of 18:48 and will provide its result link.
+  It is displayed as family-reported, with a pending source. MileSplit currently
+  lists 19:52.05. Add the official URL to `sources`, assign that key to the XC mark's
+  `source`, update its context and `xcSourcePending`, and rebuild when confirmed.
+- The family supplied an exact GPA of 4.156; weighted/unweighted basis was not
+  specified. No grading scale has been assumed.
+- The supplied email enables direct recruiting contact in the website and PDF.
 - No athlete photo was provided. The design uses original track artwork rather
   than a stand-in athlete. Race cards use the genuine MileSplit event thumbnails, linked to their hosted footage.
 - `seasonNote` is editable; no unconfirmed meets or race dates are presented.

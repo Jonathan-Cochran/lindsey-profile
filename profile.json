@@ -5,9 +5,9 @@
   "location": "Sunbury, Ohio",
   "updated": "October 19, 2026",
   "siteUrl": "https://lindsey-cochran.secretclove512.chatgpt.site",
-  "email": "",
-  "gpa": "3.8–4.0",
-  "gpaNote": "Reported range",
+  "email": "11lindsey.cochran@gmail.com",
+  "gpa": "4.156",
+  "gpaNote": "Scale not specified",
   "interests": "Pre-Veterinary / Animal Science",
   "otherSport": "Soccer",
   "bio": "I’m a Class of 2029 middle-distance runner at Big Walnut High School in Ohio, a 2026 OHSAA state champion, and a multi-sport athlete interested in studying pre-veterinary science.",
@@ -35,9 +35,9 @@
     },
     {
       "event": "XC 5K",
-      "mark": "19:52.05",
-      "context": "Cross country · 2026",
-      "source": "milesplit"
+      "mark": "18:48",
+      "context": "Cross country · Family-reported",
+      "source": null
     }
   ],
   "supportingMarks": [
@@ -128,5 +128,6 @@
     "label": "On the calendar",
     "title": "Looking ahead to track season",
     "text": "Upcoming competitions will be added when confirmed. Follow Athletic.net and MileSplit for the latest race results."
-  }
+  },
+  "xcSourcePending": true
 }
