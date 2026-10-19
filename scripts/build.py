@@ -120,6 +120,10 @@ def make_site():
     )
     contact_url = "mailto:" + p["email"] if p["email"] else p["sources"]["runcruit"]
     contact_label = "Recruiting contact" if p["email"] else "Connect on Runcruit"
+    instagram = urlparse(p["instagram"])
+    if instagram.scheme != "https" or instagram.netloc != "www.instagram.com":
+        raise ValueError("Use an HTTPS Instagram profile URL")
+    instagram_cta = f'<a class="text-link instagram-link" href="{E(p["instagram"])}" target="_blank" rel="noopener noreferrer">Instagram · @{E(instagram.path.strip("/"))} {ARROW}</a>'
     print_marks = "".join(f'<div><span>{E(m["event"])}</span><strong>' + (f'<a href="{E(p["sources"][m["source"]])}">{E(m["mark"])}</a>' if m["source"] else E(m["mark"])) + '</strong></div>' for m in p["primaryMarks"])
     print_rows = "".join(f'<tr><td>{E(r["meet"])}<br><small>{E(r["division"])}</small></td><td>{E(r["event"])}</td><td>{E(r["place"])}</td><td><a href="{E(source_url(r))}">{E(r["mark"])}</a></td></tr>' for r in p["championships"])
     print_supporting = " · ".join(f'{E(m["event"])} {E(m["mark"])} ({E(m["context"]).lower()})' for m in p["supportingMarks"])
@@ -133,6 +137,7 @@ def make_site():
         other_sport=E(p["otherSport"]), updated=E(p["updated"]), contact_url=E(contact_url), contact_label=contact_label,
         season_label=E(p["seasonNote"]["label"]), season_title=E(p["seasonNote"]["title"]), season_text=E(p["seasonNote"]["text"]),
         email_cta=f'<a class="text-link" href="{E(contact_url)}" target="_blank" rel="noopener noreferrer">{contact_label} {ARROW}</a>' if p["email"] else "",
+        instagram_cta=instagram_cta,
         arrow=ARROW, arrow_down=DOWN, download=DOWNLOAD, trophy=TROPHY, laurel=LAUREL, calendar=CALENDAR, print_icon=PRINT,
         print_resume=print_resume, **p["sources"]
     )

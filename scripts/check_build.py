@@ -78,6 +78,14 @@ pages.update({slug: (DIST / slug / "index.html").read_text() for slug in schools
 for slug, page in pages.items():
     parser = PageAssets()
     parser.feed(page)
+    instagram_links = [link for link in parser.links if link.get("href") == profile["instagram"]]
+    if len(instagram_links) != 2 or any(
+        link.get("target") != "_blank" or not {"noopener", "noreferrer"} <= set(link.get("rel", "").split())
+        for link in instagram_links
+    ):
+        raise ValueError(f"Instagram links must appear beside both contacts and open safely in a new tab: {slug}")
+    if "instagram.com" in page.split('<div class="print-only">')[1] or profile["instagram"] in pdf_links:
+        raise ValueError("Instagram belongs on the website only")
     for link in parser.links:
         href = link.get("href", "")
         if href.startswith("#") and href[1:] not in parser.ids:

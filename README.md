@@ -64,6 +64,9 @@ paths display the default profile via GitHub Pages' custom `404.html` (with an H
 - The family supplied an exact GPA of 4.156; weighted/unweighted basis was not
   specified. No grading scale has been assumed.
 - The supplied email enables direct recruiting contact in the website and PDF.
+- `instagram` holds Lindsey's Instagram profile URL. A secondary link appears
+  beside the recruiting contact in the hero and connection sections on every
+  page, opens in a new tab, and is excluded from the print resume and PDF.
 - The family supplied the athlete photos. The opening race image uses
   `JS_02149-scaled.jpg`; the 1600m awards image uses `20260607_135341.jpg`.
   Website copies are compressed WebP files with camera metadata removed.

@@ -54,3 +54,11 @@
   [data-school] .sources-section a:focus-visible,[data-school] .sources-section button:focus-visible{outline-color:var(--school-highlight)}
 }
 @media(max-width:600px){.school-note{padding:20px}.school-note h3{font-size:24px}.school-note p{font-size:13px}}
+
+/* Social links stay secondary to direct recruiting contact and race evidence. */
+.contact-links{display:flex;flex-direction:column;align-items:flex-start;gap:8px;min-width:0}
+.instagram-link{font-size:11px;font-weight:400;color:var(--muted);gap:6px}
+.instagram-link svg{width:13px;height:13px}
+.sources-section .instagram-link{color:var(--school-muted,#b8bdb1)}
+.sources-section .instagram-link:hover{color:var(--school-highlight,#fff)}
+@media(max-width:600px){.hero-actions .contact-links>.text-link:not(.instagram-link){font-size:11px}}
