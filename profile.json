@@ -19,7 +19,9 @@
     "state": "https://ohsaaweb.blob.core.windows.net/files/Sports/Track-Field/2026/OHSAA_State_2026_Final_Results.pdf",
     "nationals": "https://pa.milesplit.com/meets/739085-new-balance-outdoor-nationals-2026/results/1309557?type=raw",
     "videos": "https://oh.milesplit.com/athletes/14750556-lindsey-cochran/videos",
-    "xc": "https://www.athletic.net/result/J3F2WnXUZZo1R/"
+    "xc": "https://www.athletic.net/result/J3F2WnXUZZo1R/",
+    "allOhioCriteria": "https://ohsaaweb.blob.core.windows.net/files/Sports/Records/AllOhioSelectionProcessCriteria.pdf#page=3",
+    "sportsAwards": "https://www.dispatch.com/story/sports/high-school/sports-awards/2026/06/15/central-ohio-high-school-sports-awards-spring-nominees-2025-2026/90539349007/"
   },
   "primaryMarks": [
     {
@@ -101,6 +103,32 @@
       "place": "14th",
       "mark": "2:15.00",
       "source": "nationals"
+    }
+  ],
+  "honors": [
+    {
+      "year": "2026",
+      "title": "All-Ohio — Track & Field",
+      "detail": "1600m, 800m & 4×800m relay · Division II",
+      "source": "allOhioCriteria"
+    },
+    {
+      "year": "2026",
+      "title": "Girls Track & Field Athlete of the Year Nominee",
+      "detail": "Central Ohio High School Sports Awards",
+      "source": "sportsAwards"
+    },
+    {
+      "year": "2026",
+      "title": "All-OCC Capital — Track & Field",
+      "detail": "Ohio Capital Conference · Capital Division",
+      "source": null
+    },
+    {
+      "year": "2026",
+      "title": "All-OCC Capital — Cross Country",
+      "detail": "Ohio Capital Conference · Capital Division",
+      "source": null
     }
   ],
   "videos": [

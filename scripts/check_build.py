@@ -1,10 +1,12 @@
 """Check deployable assets, evidence links, and the letter-size recruiting PDF."""
 import json
+from html import escape
 from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
 
 from pypdf import PdfReader
+from build import plain
 
 ROOT = Path(__file__).resolve().parents[1]
 DIST = ROOT / "dist"
@@ -46,4 +48,11 @@ for mark in profile["primaryMarks"]:
             raise ValueError(f"Evidence link missing: {mark['event']}")
 if profile["siteUrl"] not in pdf_links:
     raise ValueError("PDF must link back to the recruiting website")
-print("Validated local assets, personal bests, source links, and one-page letter PDF.")
+for honor in profile["honors"]:
+    if escape(honor["title"]) not in site or plain(honor["title"]) not in pdf_text:
+        raise ValueError(f"Honor missing from website or PDF: {honor['title']}")
+    if honor["source"]:
+        url = profile["sources"][honor["source"]]
+        if url not in pdf_links or escape(url, quote=True) not in site:
+            raise ValueError(f"Honor source missing: {honor['title']}")
+print("Validated local assets, personal bests, honors, source links, and one-page letter PDF.")

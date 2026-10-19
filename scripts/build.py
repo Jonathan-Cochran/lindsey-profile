@@ -55,6 +55,20 @@ def make_site():
         f'<tr><td><span class="meet-name">{E(r["meet"])}</span><span class="meet-division">{E(r["division"])}</span></td><td>{E(r["event"])}</td><td><span class="placing {"first" if r["place"] == "1st" else ""}">{E(r["place"])}</span></td><td>{E(r["mark"])}</td><td><a href="{E(source_url(r))}" target="_blank" rel="noopener noreferrer" aria-label="View {E(r["meet"])} {E(r["event"])} published result">{ARROW}</a></td></tr>'
         for r in p["championships"]
     )
+    honor_items = ""
+    print_honors = ""
+    for honor in p["honors"]:
+        url = p["sources"].get(honor["source"])
+        content = f'<span class="honor-year">{E(honor["year"])}</span><strong>{E(honor["title"])}</strong><span class="honor-detail">{E(honor["detail"])}</span>'
+        if url:
+            content = f'<a class="honor-content" href="{E(url)}" target="_blank" rel="noopener noreferrer">{content}<span class="honor-source">{"Award criteria" if honor["source"] == "allOhioCriteria" else "Nominee announcement"} {ARROW}</span></a>'
+        else:
+            content = f'<div class="honor-content">{content}</div>'
+        honor_items += f'<li>{content}</li>'
+        label = E(honor["title"])
+        if url:
+            label = f'<a href="{E(url)}">{label}</a>'
+        print_honors += f'<li><span>{E(honor["year"])}</span><div><strong>{label}</strong>' + (f'<small>{E(honor["detail"])}</small>' if honor["source"] == "sportsAwards" else '') + '</div></li>'
     videos = "".join(
         f'<a class="video-card" href="{E(v["url"])}" target="_blank" rel="noopener noreferrer" aria-label="Watch {E(v["title"])} on MileSplit"><div class="video-visual"><img class="video-still" src="{E(v["thumbnail"])}" alt="" width="620" height="349" loading="lazy"><span class="video-lines" aria-hidden="true"></span><div class="video-topline"><span>2026 OHSAA STATE CHAMPIONSHIPS</span><span>{E(v["duration"])}</span></div><span class="film-event" aria-hidden="true">{E(v["event"])}m</span><div><strong class="film-mark">{E(v["mark"])}</strong><span class="film-caption">{E(v["place"])}</span></div><span class="play-icon">{PLAY}</span></div><div class="video-details"><div><strong>{E(v["title"])}</strong><small>{E(v["subtitle"])}</small></div><span class="watch-link">MileSplit {ARROW}</span></div></a>'
         for v in p["videos"]
@@ -64,10 +78,10 @@ def make_site():
     print_marks = "".join(f'<div><span>{E(m["event"])}</span><strong>' + (f'<a href="{E(p["sources"][m["source"]])}">{E(m["mark"])}</a>' if m["source"] else E(m["mark"])) + '</strong></div>' for m in p["primaryMarks"])
     print_rows = "".join(f'<tr><td>{E(r["meet"])}<br><small>{E(r["division"])}</small></td><td>{E(r["event"])}</td><td>{E(r["place"])}</td><td><a href="{E(source_url(r))}">{E(r["mark"])}</a></td></tr>' for r in p["championships"])
     print_supporting = " · ".join(f'{E(m["event"])} {E(m["mark"])} ({E(m["context"]).lower()})' for m in p["supportingMarks"])
-    print_resume = f'<article><header class="resume-header"><p class="eyebrow">CLASS OF {E(p["classYear"])} / WOMEN’S TRACK & FIELD / CROSS COUNTRY</p><h1>{E(p["name"])}</h1><p>{E(p["school"])} · {E(p["location"])}</p></header><p class="resume-title">{E(p["headline"])} · Division II</p><div class="resume-marks">{print_marks}</div><div class="resume-supporting">{print_supporting}</div><h2>Championship performances</h2><table><thead><tr><th>MEET</th><th>EVENT</th><th>PLACE</th><th>MARK</th></tr></thead><tbody>{print_rows}</tbody></table><h2>Academics & athlete profile</h2><div class="resume-academics"><strong>GPA:</strong> {E(p["gpa"])} ({E(p["gpaNote"]).lower()})<br><strong>Academic interests:</strong> {E(p["interests"])}<br><strong>Additional sport:</strong> {E(p["otherSport"])}</div><p class="resume-bio">{E(p["bio"])}</p><div class="resume-links"><a href="{E(p["sources"]["athletic"])}">Athletic.net</a><a href="{E(p["sources"]["milesplit"])}">MileSplit</a><a href="{E(p["sources"]["runcruit"])}">Runcruit</a><a href="{E(p["sources"]["videos"])}">Race videos</a></div><p class="resume-footer">{E(p["siteUrl"])}<br>Updated {E(p["updated"])}. Actual marks; full mile and 1600m are distinct. 4×800m mark is a team time.{(" XC 5K is family-reported; result link pending.") if p.get("xcSourcePending") else ""}{("<br>Recruiting contact: " + E(p["email"])) if p["email"] else ""}</p></article>'
+    print_resume = f'<article><header class="resume-header"><p class="eyebrow">CLASS OF {E(p["classYear"])} / WOMEN’S TRACK & FIELD / CROSS COUNTRY</p><h1>{E(p["name"])}</h1><p>{E(p["school"])} · {E(p["location"])}</p></header><p class="resume-title">{E(p["headline"])} · Division II</p><div class="resume-marks">{print_marks}</div><div class="resume-supporting">{print_supporting}</div><h2>Championship performances</h2><table><thead><tr><th>MEET</th><th>EVENT</th><th>PLACE</th><th>MARK</th></tr></thead><tbody>{print_rows}</tbody></table><h2>Honors & recognition</h2><ul class="resume-honors">{print_honors}</ul><h2>Academics & athlete profile</h2><div class="resume-academics"><strong>GPA:</strong> {E(p["gpa"])} ({E(p["gpaNote"]).lower()})<br><strong>Academic interests:</strong> {E(p["interests"])}<br><strong>Additional sport:</strong> {E(p["otherSport"])}</div><div class="resume-links"><a href="{E(p["sources"]["athletic"])}">Athletic.net</a><a href="{E(p["sources"]["milesplit"])}">MileSplit</a><a href="{E(p["sources"]["runcruit"])}">Runcruit</a><a href="{E(p["sources"]["videos"])}">Race videos</a></div><p class="resume-footer">{E(p["siteUrl"])}<br>Updated {E(p["updated"])}. Actual marks; full mile and 1600m are distinct. 4×800m mark is a team time.{(" XC 5K is family-reported; result link pending.") if p.get("xcSourcePending") else ""}{("<br>Recruiting contact: " + E(p["email"])) if p["email"] else ""}</p></article>'
     fields = dict(
         class_year=E(p["classYear"]), school=E(p["school"]), location=E(p["location"]), headline=E(p["headline"]),
-        site_url=E(p["siteUrl"]), primary_marks=marks, supporting_marks=supporting, championship_rows=rows,
+        site_url=E(p["siteUrl"]), primary_marks=marks, supporting_marks=supporting, championship_rows=rows, honor_items=honor_items,
         video_cards=videos, bio=E(p["bio"]), gpa=E(p["gpa"]), gpa_note=E(p["gpaNote"]), interests=E(p["interests"]),
         other_sport=E(p["otherSport"]), updated=E(p["updated"]), contact_url=E(contact_url), contact_label=contact_label,
         season_label=E(p["seasonNote"]["label"]), season_title=E(p["seasonNote"]["title"]), season_text=E(p["seasonNote"]["text"]),
@@ -83,7 +97,6 @@ def plain(s):
 
 
 def make_pdf():
-    from reportlab.lib.utils import simpleSplit
     # Embed fonts so the PDF renders consistently without host font substitution.
     pdfmetrics.registerFont(TTFont("Helvetica", str(ROOT / "scripts/fonts/LiberationSans-Regular.ttf")))
     pdfmetrics.registerFont(TTFont("Helvetica-Bold", str(ROOT / "scripts/fonts/LiberationSans-Bold.ttf")))
@@ -112,30 +125,30 @@ def make_pdf():
         c.linkURL(url, (x, y-3, x+width, y+size+2), relative=0, thickness=0)
 
     text(left, 747, f'CLASS OF {p["classYear"]}  /  WOMEN\'S TRACK & FIELD  /  CROSS COUNTRY', 8, "Helvetica-Bold", red)
-    text(left-1, 701, p["name"], 36, "Helvetica-Bold")
-    text(left, 678, f'{p["school"]}  /  {p["location"]}', 10, color=muted)
+    text(left-1, 711, p["name"], 36, "Helvetica-Bold")
+    text(left, 689, f'{p["school"]}  /  {p["location"]}', 10, color=muted)
     c.setStrokeColor(red)
     c.setLineWidth(2.5)
-    c.line(left, 661, right, 661)
-    text(left, 637, p["headline"], 13, "Helvetica-Bold", red)
-    text(left, 621, "Ohio Division II / Freshman season", 9, color=muted)
+    c.line(left, 674, right, 674)
+    text(left, 653, p["headline"], 13, "Helvetica-Bold", red)
+    text(left, 637, "Ohio Division II / Freshman season", 9, color=muted)
     c.setFillColor(HexColor("#f5f4ef"))
-    c.rect(left, 532, right-left, 72, fill=1, stroke=0)
+    c.rect(left, 550, right-left, 70, fill=1, stroke=0)
     for i, mark in enumerate(p["primaryMarks"]):
         x = left+16+i*174
-        text(x, 586, mark["event"], 9, "Helvetica-Bold")
-        text(x, 554, mark["mark"], 27, "Helvetica-Bold", red)
+        text(x, 602, mark["event"], 9, "Helvetica-Bold")
+        text(x, 570, mark["mark"], 27, "Helvetica-Bold", red)
         if mark["source"]:
-            c.linkURL(p["sources"][mark["source"]], (x,548,x+149,597), relative=0, thickness=0)
+            c.linkURL(p["sources"][mark["source"]], (x,564,x+149,613), relative=0, thickness=0)
     supporting = "   /   ".join(f'{m["event"]} {m["mark"]} ({m["context"].lower()})' for m in p["supportingMarks"])
-    text(left, 515, supporting, 8.5)
-    text(left, 485, "CHAMPIONSHIP PERFORMANCES", 10, "Helvetica-Bold")
-    rule(474)
+    text(left, 533, supporting, 8.5)
+    text(left, 508, "CHAMPIONSHIP PERFORMANCES", 10, "Helvetica-Bold")
+    rule(498)
     cols = [left, 321, 403, 465]
     for x, title in zip(cols, ["MEET", "EVENT", "PLACE", "MARK"]):
-        text(x, 459, title, 7.5, "Helvetica-Bold", muted)
-    rule(450)
-    y = 431
+        text(x, 484, title, 7.5, "Helvetica-Bold", muted)
+    rule(475)
+    y = 457
     for row in p["championships"]:
         text(left, y, row["meet"], 9, "Helvetica-Bold")
         text(left, y-12, row["division"], 7.5, color=muted)
@@ -143,18 +156,28 @@ def make_pdf():
         text(cols[2], y-5, row["place"], 9, "Helvetica-Bold", red if row["place"] == "1st" else ink)
         link(cols[3], y-5, row["mark"], source_url(row), 9)
         rule(y-22)
-        y -= 40
-    text(left, 230, "Actual marks. Full mile and 1600m are distinct events. 4x800m is the team's relay time.", 7.5, color=muted)
+        y -= 32
+    text(left, 295, "Actual marks. Full mile and 1600m are distinct events. 4x800m is the team's relay time.", 7.5, color=muted)
     if p.get("xcSourcePending"):
-        text(left, 217, f'XC 5K {p["primaryMarks"][2]["mark"]} is family-reported; published result link pending.', 7.5, color=muted)
-    text(left, 194, "ACADEMICS & ATHLETE PROFILE", 10, "Helvetica-Bold")
-    text(left, 181, f'GPA: {p["gpa"]} ({p["gpaNote"].lower()})', 9.5)
-    text(left, 164, f'Academic interests: {p["interests"]}', 9.5)
-    text(left, 147, f'Additional sport: {p["otherSport"]}', 9.5)
-    # Keep a concise bio without reducing legibility to fit a page.
-    bio_lines = simpleSplit(plain(p["bio"]), "Helvetica", 8.5, right-left)
-    for i, bio_line in enumerate(bio_lines):
-        text(left, 125-i*12, bio_line, 8.5, color=muted)
+        text(left, 284, f'XC 5K {p["primaryMarks"][2]["mark"]} is family-reported; published result link pending.', 7.5, color=muted)
+    text(left, 270, "HONORS & RECOGNITION", 10, "Helvetica-Bold")
+    y = 252
+    for honor in p["honors"]:
+        url = p["sources"].get(honor["source"])
+        if url:
+            link(left, y, honor["title"], url, 9)
+        else:
+            text(left, y, honor["title"], 9, "Helvetica-Bold")
+        text(right-23, y, honor["year"], 8, color=muted)
+        y -= 18
+        if honor["source"] == "sportsAwards":
+            text(left, y+6, honor["detail"], 8, color=muted)
+            y -= 12
+    # Keep academics and contact details readable; the website carries the full bio.
+    text(left, 159, "ACADEMICS & ATHLETE PROFILE", 10, "Helvetica-Bold")
+    text(left, 143, f'GPA: {p["gpa"]} ({p["gpaNote"].lower()})', 9.5)
+    text(left, 127, f'Academic interests: {p["interests"]}', 9.5)
+    text(left, 111, f'Additional sport: {p["otherSport"]}', 9.5)
     rule(88)
     for x, label, key in [(left,"Athletic.net","athletic"),(144,"MileSplit","milesplit"),(231,"Runcruit","runcruit"),(315,"Race videos","videos")]:
         link(x, 71, label, p["sources"][key], 9)

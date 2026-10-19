@@ -35,6 +35,10 @@ download is a separately typeset letter-size document with clickable sources.
   Cropping is handled in CSS; original files remain in the workspace root.
   Race cards use the genuine MileSplit event thumbnails, linked to their hosted footage.
 - `seasonNote` holds the latest significant result or confirmed upcoming competition.
+- `honors` holds recognitions in display order, separately from championship
+  finishes. The family confirmed the 2026 conference honors; the website uses
+  "All-OCC Capital" until exact certificate wording is available. Do not add
+  "First Team" based only on a generated recommendation.
 
 ## Evidence
 
@@ -50,6 +54,13 @@ download is a separately typeset letter-size document with clickable sources.
   RunnerSpace results.
 - Athletic.net and Runcruit athlete profiles are linked as supplied. Do not label
   Runcruit projections as achieved times.
+- OHSAA's August 2026 selection criteria call the track recognition "All-Ohio"
+  and award it to the top eight placers in each event and division. Lindsey's
+  three state podium finishes qualify. The criteria link is labeled accordingly.
+- The June 15, 2026 Central Ohio High School Sports Awards announcement lists
+  Lindsey among the girls track and field Athlete of the Year nominees. The
+  Dispatch article was corroborated by its Yahoo Sports syndication:
+  https://sports.yahoo.com/articles/2025-26-central-ohio-high-110225245.html.
 
 The source URLs are stored in `profile.json`; use these as the record of evidence.
 Do not expand this project into a full meet-results database.
