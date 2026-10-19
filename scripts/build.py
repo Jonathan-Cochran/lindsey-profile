@@ -47,7 +47,7 @@ def make_site():
     marks = ""
     for m in p["primaryMarks"]:
         url = p["sources"].get(m["source"])
-        opening = f'<a class="mark-card" href="{E(url)}" target="_blank" rel="noopener noreferrer" aria-label="{E(m["event"])} personal best {E(m["mark"])}; verify on MileSplit">' if url else '<div class="mark-card">'
+        opening = f'<a class="mark-card" href="{E(url)}" target="_blank" rel="noopener noreferrer" aria-label="{E(m["event"])} personal best {E(m["mark"])}; view published result">' if url else '<div class="mark-card">'
         closing = '</a>' if url else '</div>'
         marks += opening + f'<span class="mark-event">{E(m["event"])} {ARROW if url else ""}</span><strong class="mark-value">{E(m["mark"])}</strong><span class="mark-context">{E(m["context"])}{" · Result link pending" if not url else ""}</span>' + closing
     supporting = "".join(f'<span class="supporting-mark">{E(m["event"])} <strong>{E(m["mark"])}</strong> <small>{E(m["context"])}</small></span>' for m in p["supportingMarks"])
@@ -61,7 +61,7 @@ def make_site():
     )
     contact_url = "mailto:" + p["email"] if p["email"] else p["sources"]["runcruit"]
     contact_label = "Recruiting contact" if p["email"] else "Connect on Runcruit"
-    print_marks = "".join(f'<div><span>{E(m["event"])}</span><strong>{E(m["mark"])}</strong></div>' for m in p["primaryMarks"])
+    print_marks = "".join(f'<div><span>{E(m["event"])}</span><strong>' + (f'<a href="{E(p["sources"][m["source"]])}">{E(m["mark"])}</a>' if m["source"] else E(m["mark"])) + '</strong></div>' for m in p["primaryMarks"])
     print_rows = "".join(f'<tr><td>{E(r["meet"])}<br><small>{E(r["division"])}</small></td><td>{E(r["event"])}</td><td>{E(r["place"])}</td><td><a href="{E(source_url(r))}">{E(r["mark"])}</a></td></tr>' for r in p["championships"])
     print_supporting = " · ".join(f'{E(m["event"])} {E(m["mark"])} ({E(m["context"]).lower()})' for m in p["supportingMarks"])
     print_resume = f'<article><header class="resume-header"><p class="eyebrow">CLASS OF {E(p["classYear"])} / WOMEN’S TRACK & FIELD / CROSS COUNTRY</p><h1>{E(p["name"])}</h1><p>{E(p["school"])} · {E(p["location"])}</p></header><p class="resume-title">{E(p["headline"])} · Division II</p><div class="resume-marks">{print_marks}</div><div class="resume-supporting">{print_supporting}</div><h2>Championship performances</h2><table><thead><tr><th>MEET</th><th>EVENT</th><th>PLACE</th><th>MARK</th></tr></thead><tbody>{print_rows}</tbody></table><h2>Academics & athlete profile</h2><div class="resume-academics"><strong>GPA:</strong> {E(p["gpa"])} ({E(p["gpaNote"]).lower()})<br><strong>Academic interests:</strong> {E(p["interests"])}<br><strong>Additional sport:</strong> {E(p["otherSport"])}</div><p class="resume-bio">{E(p["bio"])}</p><div class="resume-links"><a href="{E(p["sources"]["athletic"])}">Athletic.net</a><a href="{E(p["sources"]["milesplit"])}">MileSplit</a><a href="{E(p["sources"]["runcruit"])}">Runcruit</a><a href="{E(p["sources"]["videos"])}">Race videos</a></div><p class="resume-footer">{E(p["siteUrl"])}<br>Updated {E(p["updated"])}. Actual marks; full mile and 1600m are distinct. 4×800m mark is a team time.{(" XC 5K is family-reported; result link pending.") if p.get("xcSourcePending") else ""}{("<br>Recruiting contact: " + E(p["email"])) if p["email"] else ""}</p></article>'

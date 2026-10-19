@@ -18,7 +18,8 @@
     "runcruit": "https://runcruit.com/p/77559",
     "state": "https://ohsaaweb.blob.core.windows.net/files/Sports/Track-Field/2026/OHSAA_State_2026_Final_Results.pdf",
     "nationals": "https://pa.milesplit.com/meets/739085-new-balance-outdoor-nationals-2026/results/1309557?type=raw",
-    "videos": "https://oh.milesplit.com/athletes/14750556-lindsey-cochran/videos"
+    "videos": "https://oh.milesplit.com/athletes/14750556-lindsey-cochran/videos",
+    "xc": "https://www.athletic.net/result/J3F2WnXUZZo1R/"
   },
   "primaryMarks": [
     {
@@ -35,9 +36,9 @@
     },
     {
       "event": "XC 5K",
-      "mark": "18:48",
-      "context": "Cross country · Family-reported",
-      "source": null
+      "mark": "18:48.5",
+      "context": "Cross country · Oct 17, 2026",
+      "source": "xc"
     }
   ],
   "supportingMarks": [
@@ -125,9 +126,9 @@
     }
   ],
   "seasonNote": {
-    "label": "On the calendar",
-    "title": "Looking ahead to track season",
-    "text": "Upcoming competitions will be added when confirmed. Follow Athletic.net and MileSplit for the latest race results."
+    "label": "Latest result",
+    "title": "XC 5K personal best",
+    "text": "18:48.5 · 2nd place at Ohio Capital Conference – Capital on October 17, 2026. View the official result through the XC 5K mark above."
   },
-  "xcSourcePending": true
+  "xcSourcePending": false
 }

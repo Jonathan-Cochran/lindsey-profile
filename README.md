@@ -18,28 +18,26 @@ download is a separately typeset letter-size document with clickable sources.
 
 ## Content to confirm
 
-- The family confirmed an XC 5K of 18:48 and will provide its result link.
-  It is displayed as family-reported, with a pending source. MileSplit currently
-  lists 19:52.05. Add the official URL to `sources`, assign that key to the XC mark's
-  `source`, update its context and `xcSourcePending`, and rebuild when confirmed.
 - The family supplied an exact GPA of 4.156; weighted/unweighted basis was not
   specified. No grading scale has been assumed.
 - The supplied email enables direct recruiting contact in the website and PDF.
 - No athlete photo was provided. The design uses original track artwork rather
   than a stand-in athlete. Race cards use the genuine MileSplit event thumbnails, linked to their hosted footage.
-- `seasonNote` is editable; no unconfirmed meets or race dates are presented.
+- `seasonNote` holds the latest significant result or confirmed upcoming competition.
 
 ## Evidence
 
 - MileSplit athlete profile: class, school, outdoor 1600m, 800m, full mile, 400m,
-  indoor 800m, and XC 5K marks, plus race video listings.
+  indoor 800m marks, plus race video listings.
+- Athletic.net official result: XC 5K personal best of 18:48.5, second place at
+  Ohio Capital Conference - Capital on October 17, 2026. The direct result link
+  is used in the website, browser-print version, and PDF.
 - OHSAA 2026 final results: 1600m first, 800m third, 4x800m second. The relay mark
   is explicitly a team time. PDF source links include relevant page anchors.
 - MileSplit New Balance Outdoor Nationals freshman results: full mile twelfth in
   5:00.58 and 800m fourteenth in 2:15.00, also corroborated by the meet's
   RunnerSpace results.
-- Athletic.net and Runcruit are linked as supplied. Their complete records were
-  not independently readable through the public text interface. Do not label
+- Athletic.net and Runcruit athlete profiles are linked as supplied. Do not label
   Runcruit projections as achieved times.
 
 The source URLs are stored in `profile.json`; use these as the record of evidence.
@@ -48,8 +46,7 @@ Do not expand this project into a full meet-results database.
 ## Hosting
 
 `.openai/hosting.json` identifies the Sites project. Static assets are in `dist`.
-Sites starts with owner-private access. Public coach access requires changing
-the audience to public in Sites; a private preview link is not coach-accessible.
+The website is public for coaches, as approved by the family.
 If a custom domain is connected later, update `siteUrl` and rebuild the PDF.
 
 The complete `dist` directory can also be served by any static host. No private
