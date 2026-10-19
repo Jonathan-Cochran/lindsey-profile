@@ -1,5 +1,6 @@
 """Build the static recruiting profile and its one-page letter-size PDF."""
 import html
+import hashlib
 import json
 import shutil
 from pathlib import Path
@@ -81,6 +82,7 @@ def make_site():
     print_resume = f'<article><header class="resume-header"><p class="eyebrow">CLASS OF {E(p["classYear"])} / WOMEN’S TRACK & FIELD / CROSS COUNTRY</p><h1>{E(p["name"])}</h1><p>{E(p["school"])} · {E(p["location"])}</p></header><p class="resume-title">{E(p["headline"])} · Division II</p><div class="resume-marks">{print_marks}</div><div class="resume-supporting">{print_supporting}</div><h2>Championship performances</h2><table><thead><tr><th>MEET</th><th>EVENT</th><th>PLACE</th><th>MARK</th></tr></thead><tbody>{print_rows}</tbody></table><h2>Honors & recognition</h2><ul class="resume-honors">{print_honors}</ul><h2>Academics & athlete profile</h2><div class="resume-academics"><strong>GPA:</strong> {E(p["gpa"])} ({E(p["gpaNote"]).lower()})<br><strong>Academic interests:</strong> {E(p["interests"])}<br><strong>Additional sport:</strong> {E(p["otherSport"])}</div><div class="resume-links"><a href="{E(p["sources"]["athletic"])}">Athletic.net</a><a href="{E(p["sources"]["milesplit"])}">MileSplit</a><a href="{E(p["sources"]["runcruit"])}">Runcruit</a><a href="{E(p["sources"]["videos"])}">Race videos</a></div><p class="resume-footer">{E(p["siteUrl"])}<br>Updated {E(p["updated"])}. Actual marks; full mile and 1600m are distinct. 4×800m mark is a team time.{(" XC 5K is family-reported; result link pending.") if p.get("xcSourcePending") else ""}{("<br>Recruiting contact: " + E(p["email"])) if p["email"] else ""}</p></article>'
     fields = dict(
         class_year=E(p["classYear"]), school=E(p["school"]), location=E(p["location"]), headline=E(p["headline"]),
+        style_version=hashlib.sha256((DIST / "styles.css").read_bytes()).hexdigest()[:12],
         site_url=E(p["siteUrl"]), primary_marks=marks, supporting_marks=supporting, championship_rows=rows, honor_items=honor_items,
         video_cards=videos, bio=E(p["bio"]), gpa=E(p["gpa"]), gpa_note=E(p["gpaNote"]), interests=E(p["interests"]),
         other_sport=E(p["otherSport"]), updated=E(p["updated"]), contact_url=E(contact_url), contact_label=contact_label,
