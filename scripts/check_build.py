@@ -51,6 +51,8 @@ if profile["siteUrl"] not in pdf_links:
 for honor in profile["honors"]:
     if escape(honor["title"]) not in site or plain(honor["title"]) not in pdf_text:
         raise ValueError(f"Honor missing from website or PDF: {honor['title']}")
+    if escape(honor["detail"]) not in site or plain(honor["detail"]) not in pdf_text:
+        raise ValueError(f"Honor events or context missing: {honor['title']}")
     if honor["source"]:
         url = profile["sources"][honor["source"]]
         if url not in pdf_links or escape(url, quote=True) not in site:

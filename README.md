@@ -36,9 +36,12 @@ download is a separately typeset letter-size document with clickable sources.
   Race cards use the genuine MileSplit event thumbnails, linked to their hosted footage.
 - `seasonNote` holds the latest significant result or confirmed upcoming competition.
 - `honors` holds recognitions in display order, separately from championship
-  finishes. The family confirmed the 2026 conference honors; the website uses
-  "All-OCC Capital" until exact certificate wording is available. Do not add
-  "First Team" based only on a generated recommendation.
+  finishes. The family supplied the event-specific 2026 indoor and outdoor
+  OATCCC All-Ohio honors, OHSAA All-District honors, OCC First Team honors in
+  the 800m and 4x800m relay, and the 2025-26 spring Scholar Athlete recognition.
+  Related event awards are grouped for readability; indoor and outdoor honors
+  remain separate. The earlier general XC conference entry was replaced by this
+  more precise list. Do not infer additional event awards from race results.
 
 ## Evidence
 

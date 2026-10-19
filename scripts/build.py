@@ -69,7 +69,7 @@ def make_site():
         label = E(honor["title"])
         if url:
             label = f'<a href="{E(url)}">{label}</a>'
-        print_honors += f'<li><span>{E(honor["year"])}</span><div><strong>{label}</strong>' + (f'<small>{E(honor["detail"])}</small>' if honor["source"] == "sportsAwards" else '') + '</div></li>'
+        print_honors += f'<li><span>{E(honor["year"])}</span><div><strong>{label}</strong><small>{E(honor["detail"])}</small></div></li>'
     videos = "".join(
         f'<a class="video-card" href="{E(v["url"])}" target="_blank" rel="noopener noreferrer" aria-label="Watch {E(v["title"])} on MileSplit"><div class="video-visual"><img class="video-still" src="{E(v["thumbnail"])}" alt="" width="620" height="349" loading="lazy"><span class="video-lines" aria-hidden="true"></span><div class="video-topline"><span>2026 OHSAA STATE CHAMPIONSHIPS</span><span>{E(v["duration"])}</span></div><span class="film-event" aria-hidden="true">{E(v["event"])}m</span><div><strong class="film-mark">{E(v["mark"])}</strong><span class="film-caption">{E(v["place"])}</span></div><span class="play-icon">{PLAY}</span></div><div class="video-details"><div><strong>{E(v["title"])}</strong><small>{E(v["subtitle"])}</small></div><span class="watch-link">MileSplit {ARROW}</span></div></a>'
         for v in p["videos"]
@@ -163,23 +163,21 @@ def make_pdf():
     if p.get("xcSourcePending"):
         text(left, 284, f'XC 5K {p["primaryMarks"][2]["mark"]} is family-reported; published result link pending.', 7.5, color=muted)
     text(left, 270, "HONORS & RECOGNITION", 10, "Helvetica-Bold")
-    y = 252
-    for honor in p["honors"]:
+    for i, honor in enumerate(p["honors"]):
+        x = left + (i % 2) * 270
+        y = 252 - (i // 2) * 36
         url = p["sources"].get(honor["source"])
         if url:
-            link(left, y, honor["title"], url, 9)
+            link(x, y, honor["title"], url, 9)
         else:
-            text(left, y, honor["title"], 9, "Helvetica-Bold")
-        text(right-23, y, honor["year"], 8, color=muted)
-        y -= 18
-        if honor["source"] == "sportsAwards":
-            text(left, y+6, honor["detail"], 8, color=muted)
-            y -= 12
+            text(x, y, honor["title"], 9, "Helvetica-Bold")
+        text(x, y-12, f'{honor["year"]} · {honor["detail"]}', 8, color=muted)
     # Keep academics and contact details readable; the website carries the full bio.
-    text(left, 159, "ACADEMICS & ATHLETE PROFILE", 10, "Helvetica-Bold")
-    text(left, 143, f'GPA: {p["gpa"]} ({p["gpaNote"].lower()})', 9.5)
-    text(left, 127, f'Academic interests: {p["interests"]}', 9.5)
+    text(left, 143, "ACADEMICS & ATHLETE PROFILE", 10, "Helvetica-Bold")
+    text(left, 127, f'GPA: {p["gpa"]} ({p["gpaNote"].lower()})', 9.5)
     text(left, 111, f'Additional sport: {p["otherSport"]}', 9.5)
+    text(left+270, 127, 'Academic interests', 9, "Helvetica-Bold")
+    text(left+270, 111, p["interests"], 9.5)
     rule(88)
     for x, label, key in [(left,"Athletic.net","athletic"),(144,"MileSplit","milesplit"),(231,"Runcruit","runcruit"),(315,"Race videos","videos")]:
         link(x, 71, label, p["sources"][key], 9)

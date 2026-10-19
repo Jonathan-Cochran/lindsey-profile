@@ -108,9 +108,15 @@
   "honors": [
     {
       "year": "2026",
-      "title": "All-Ohio — Track & Field",
-      "detail": "1600m, 800m & 4×800m relay · Division II",
+      "title": "OATCCC All-Ohio — Outdoor Track & Field",
+      "detail": "1600m, 800m & 4×800m relay",
       "source": "allOhioCriteria"
+    },
+    {
+      "year": "2026",
+      "title": "OATCCC All-Ohio — Indoor Track & Field",
+      "detail": "4×800m relay & 800m",
+      "source": null
     },
     {
       "year": "2026",
@@ -119,15 +125,21 @@
       "source": "sportsAwards"
     },
     {
-      "year": "2026",
-      "title": "All-OCC Capital — Track & Field",
-      "detail": "Ohio Capital Conference · Capital Division",
+      "year": "2025–26",
+      "title": "Spring Sports Season Scholar Athlete",
+      "detail": "Academic recognition",
       "source": null
     },
     {
       "year": "2026",
-      "title": "All-OCC Capital — Cross Country",
-      "detail": "Ohio Capital Conference · Capital Division",
+      "title": "OHSAA All-District — Track & Field",
+      "detail": "4×800m relay, 800m & 1600m",
+      "source": null
+    },
+    {
+      "year": "2026",
+      "title": "OCC First Team — Track & Field",
+      "detail": "4×800m relay & 800m · Capital Division",
       "source": null
     }
   ],

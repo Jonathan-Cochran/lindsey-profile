@@ -20,6 +20,8 @@
 @media(max-width:600px){.honors-list{grid-template-columns:1fr}.honors-list>li:nth-child(even){border-left:0}.honors-list>li+li{border-top:1px solid var(--line)}.honor-content,.honors-list>li:nth-child(odd) .honor-content{padding:19px 0}.honors-section .results-heading>.small-label{display:none}.honor-content>strong{font-size:14px}}
 @media print{.resume-header{padding-bottom:10pt}.resume-header h1{font-size:32pt;margin:8pt 0 6pt}.resume-title{margin:10pt 0}.resume-marks{padding:10pt 0}.print-only h2{font-size:14pt;margin:12pt 0 7pt}.print-only th{padding:5pt}.print-only td{padding:5pt;font-size:8.5pt}.resume-honors{list-style:none;margin:0;padding:0}.resume-honors li{display:flex;gap:12pt;margin:5pt 0;font-size:9pt;break-inside:avoid}.resume-honors li>span{color:#666;font-size:8pt;min-width:25pt}.resume-honors small{display:block;color:#666;font-size:8pt;margin-top:2pt}.resume-honors a{color:#a42132}.resume-academics{line-height:1.6}.resume-footer{margin-top:12pt;padding-top:8pt;font-size:7.5pt}}
 
+@media print{.resume-honors{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7pt 18pt}.resume-honors li{margin:0;gap:8pt}.resume-honors li>div{min-width:0}}
+
 /* Family-supplied photography; keep the performance summary easy to scan. */
 .hero-photo{margin:0;position:relative;overflow:hidden;aspect-ratio:1.06;background:#d7d8cf;min-width:0}
 .hero-photo>img{display:block;width:100%;height:100%;object-fit:cover;object-position:49% 42%}
