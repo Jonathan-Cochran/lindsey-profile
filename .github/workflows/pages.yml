@@ -35,16 +35,16 @@ jobs:
       - name: Validate published files
         run: python scripts/check_build.py
       - name: Configure GitHub Pages
-        if: github.event_name != 'pull_request'
+        if: github.event_name != 'pull_request' && vars.PAGES_ENABLED == 'true'
         uses: actions/configure-pages@v5
       - name: Upload website and PDF
-        if: github.event_name != 'pull_request'
+        if: github.event_name != 'pull_request' && vars.PAGES_ENABLED == 'true'
         uses: actions/upload-pages-artifact@v4
         with:
           path: dist
 
   deploy:
-    if: github.event_name != 'pull_request'
+    if: github.event_name != 'pull_request' && vars.PAGES_ENABLED == 'true'
     needs: build
     runs-on: ubuntu-latest
     permissions:

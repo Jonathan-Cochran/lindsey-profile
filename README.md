@@ -12,9 +12,11 @@ database, analytics, or browser dependencies are needed to view the profile.
 5. Preview with `python3 -m http.server 4173 --directory dist`.
 6. Review the website and the PDF, commit, and push to `main`.
 
-The GitHub Pages workflow rebuilds and validates the website and PDF on every
-push to `main`, then publishes `dist`. Pull requests run the same build and checks
-without publishing. Deployment does not require a personal access token or any
+The workflow rebuilds and validates the website and PDF on every push to `main`.
+Pull requests run the same checks without publishing. Set the repository Actions
+variable `PAGES_ENABLED` to `true` after GitHub Pages is enabled to automatically
+publish `dist` following successful builds. Until then, the workflow only builds
+and validates. Deployment does not require a personal access token or any
 repository secrets. The workflow can also be run manually from the Actions tab.
 
 Both formats use the same profile data. `template.html` controls the website
@@ -54,8 +56,14 @@ Do not expand this project into a full meet-results database.
 
 ## Hosting
 
-The intended primary address is `https://lindseycochran.com`, hosted by GitHub
-Pages. Set the repository's Pages publishing source to **GitHub Actions**, then
+The intended primary address is `https://lindseycochran.com`. Source code is stored
+in a private GitHub repository. The current account plan does not support GitHub
+Pages for private repositories, so Pages deployment is disabled pending the
+hosting decision. The existing public Sites publication continues serving coaches.
+
+If using GitHub Pages, it requires a supported paid plan for the private repository
+or explicit approval to make the repository public. Set the repository's Pages
+publishing source to **GitHub Actions** and `PAGES_ENABLED` to `true`, then
 configure `lindseycochran.com` as its custom domain before pointing DNS to GitHub.
 The custom domain setting is managed in GitHub, not a `CNAME` file, because this
 project uses an Actions workflow.
