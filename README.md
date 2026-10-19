@@ -21,8 +21,11 @@ download is a separately typeset letter-size document with clickable sources.
 - The family supplied an exact GPA of 4.156; weighted/unweighted basis was not
   specified. No grading scale has been assumed.
 - The supplied email enables direct recruiting contact in the website and PDF.
-- No athlete photo was provided. The design uses original track artwork rather
-  than a stand-in athlete. Race cards use the genuine MileSplit event thumbnails, linked to their hosted footage.
+- The family supplied the athlete photos. The opening race image uses
+  `JS_02149-scaled.jpg`; the 1600m awards image uses `20260607_135341.jpg`.
+  Website copies are compressed WebP files with camera metadata removed.
+  Cropping is handled in CSS; original files remain in the workspace root.
+  Race cards use the genuine MileSplit event thumbnails, linked to their hosted footage.
 - `seasonNote` holds the latest significant result or confirmed upcoming competition.
 
 ## Evidence
