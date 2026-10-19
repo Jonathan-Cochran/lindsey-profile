@@ -56,19 +56,19 @@ Do not expand this project into a full meet-results database.
 
 ## Hosting
 
-The intended primary address is `https://lindseycochran.com`. Source code is stored
-in a private GitHub repository. The current account plan does not support GitHub
-Pages for private repositories, so Pages deployment is disabled pending the
-hosting decision. The existing public Sites publication continues serving coaches.
-
-If using GitHub Pages, it requires a supported paid plan for the private repository
-or explicit approval to make the repository public. Set the repository's Pages
-publishing source to **GitHub Actions** and `PAGES_ENABLED` to `true`, then
-configure `lindseycochran.com` as its custom domain before pointing DNS to GitHub.
+The primary address is `https://lindseycochran.com`, hosted by GitHub Pages.
+Source code is in the public repository `Jonathan-Cochran/lindsey-profile`, as
+approved by the family. GitHub Pages uses **GitHub Actions** as its publishing
+source, and the repository variable `PAGES_ENABLED` is `true`.
+Configure `lindseycochran.com` as the repository's custom domain before pointing
+DNS to GitHub.
 The custom domain setting is managed in GitHub, not a `CNAME` file, because this
 project uses an Actions workflow.
 
-At the domain's DNS provider, configure these records:
+In AWS Route 53, open **Hosted zones → lindseycochran.com → Create record**.
+Use simple routing, turn **Alias** off, and configure these records. For the apex
+record, leave the record name blank and enter all four IP addresses as separate
+lines in one A record. A TTL of 300 seconds is suitable during setup.
 
 | Type | Name | Value |
 | --- | --- | --- |
