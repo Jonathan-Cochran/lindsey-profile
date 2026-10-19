@@ -1,0 +1,132 @@
+{
+  "name": "Lindsey Cochran",
+  "classYear": "2029",
+  "school": "Big Walnut High School",
+  "location": "Sunbury, Ohio",
+  "updated": "October 19, 2026",
+  "siteUrl": "https://lindsey-cochran.secretclove512.chatgpt.site",
+  "email": "",
+  "gpa": "3.8–4.0",
+  "gpaNote": "Reported range",
+  "interests": "Pre-Veterinary / Animal Science",
+  "otherSport": "Soccer",
+  "bio": "I’m a Class of 2029 middle-distance runner at Big Walnut High School in Ohio, a 2026 OHSAA state champion, and a multi-sport athlete interested in studying pre-veterinary science.",
+  "headline": "2026 OHSAA State Champion — 1600m",
+  "sources": {
+    "milesplit": "https://oh.milesplit.com/athletes/14750556-lindsey-cochran",
+    "athletic": "https://www.athletic.net/athlete/30725838/track-and-field/all",
+    "runcruit": "https://runcruit.com/p/77559",
+    "state": "https://ohsaaweb.blob.core.windows.net/files/Sports/Track-Field/2026/OHSAA_State_2026_Final_Results.pdf",
+    "nationals": "https://pa.milesplit.com/meets/739085-new-balance-outdoor-nationals-2026/results/1309557?type=raw",
+    "videos": "https://oh.milesplit.com/athletes/14750556-lindsey-cochran/videos"
+  },
+  "primaryMarks": [
+    {
+      "event": "1600m",
+      "mark": "4:54.45",
+      "context": "Outdoor · 2026",
+      "source": "milesplit"
+    },
+    {
+      "event": "800m",
+      "mark": "2:13.63",
+      "context": "Outdoor · 2026",
+      "source": "milesplit"
+    },
+    {
+      "event": "XC 5K",
+      "mark": "19:52.05",
+      "context": "Cross country · 2026",
+      "source": "milesplit"
+    }
+  ],
+  "supportingMarks": [
+    {
+      "event": "Full mile",
+      "mark": "5:00.58",
+      "context": "Outdoor"
+    },
+    {
+      "event": "400m",
+      "mark": "1:00.51",
+      "context": "Outdoor"
+    },
+    {
+      "event": "800m",
+      "mark": "2:18.61",
+      "context": "Indoor"
+    }
+  ],
+  "championships": [
+    {
+      "meet": "OHSAA State Championships",
+      "division": "Division II · 2026",
+      "event": "1600m",
+      "place": "1st",
+      "mark": "4:54.45",
+      "source": "state",
+      "page": 20
+    },
+    {
+      "meet": "OHSAA State Championships",
+      "division": "Division II · 2026",
+      "event": "800m",
+      "place": "3rd",
+      "mark": "2:13.63",
+      "source": "state",
+      "page": 24
+    },
+    {
+      "meet": "OHSAA State Championships",
+      "division": "Division II · 2026",
+      "event": "4×800m",
+      "place": "2nd",
+      "mark": "9:08.30",
+      "source": "state",
+      "page": 15
+    },
+    {
+      "meet": "New Balance Nationals Outdoor",
+      "division": "Freshman · 2026",
+      "event": "Full mile",
+      "place": "12th",
+      "mark": "5:00.58",
+      "source": "nationals"
+    },
+    {
+      "meet": "New Balance Nationals Outdoor",
+      "division": "Freshman · 2026",
+      "event": "800m",
+      "place": "14th",
+      "mark": "2:15.00",
+      "source": "nationals"
+    }
+  ],
+  "videos": [
+    {
+      "title": "State 1600m final",
+      "subtitle": "OHSAA Division II · 2026",
+      "event": "1600",
+      "mark": "4:54.45",
+      "place": "State champion",
+      "url": "https://oh.milesplit.com/videos/embed/820055",
+      "duration": "6:15",
+      "thumbnail": "assets/state-1600.jpg"
+    },
+    {
+      "title": "State 800m final",
+      "subtitle": "OHSAA Division II · 2026",
+      "event": "800",
+      "mark": "2:13.63",
+      "place": "3rd place",
+      "url": "https://oh.milesplit.com/videos/embed/820066",
+      "duration": "3:07",
+      "thumbnail": "assets/state-800.jpg"
+    }
+  ],
+  "seasonNote": {
+    "label": "On the calendar",
+    "title": "Looking ahead to track season",
+    "text": "Upcoming competitions will be added when confirmed. Follow Athletic.net and MileSplit for the latest race results."
+  }
+}
