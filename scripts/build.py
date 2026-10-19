@@ -2,6 +2,7 @@
 import html
 import hashlib
 import json
+import re
 import shutil
 from pathlib import Path
 from string import Template
@@ -16,6 +17,7 @@ from reportlab.pdfbase.ttfonts import TTFont
 ROOT = Path(__file__).resolve().parents[1]
 DIST = ROOT / "dist"
 PROFILE = json.loads((ROOT / "profile.json").read_text())
+SCHOOLS = json.loads((ROOT / "schools.json").read_text())
 E = lambda value: html.escape(str(value), quote=True)
 
 
@@ -36,6 +38,48 @@ LAUREL = icon('<circle cx="12" cy="12" r="11" stroke-dasharray="1 1.2"/><path d=
 def source_url(row):
     url = PROFILE["sources"][row["source"]]
     return url + (f'#page={row["page"]}' if row.get("page") else "")
+
+
+def luminance(color):
+    channels = [int(color[i:i+2], 16) / 255 for i in (1, 3, 5)]
+    linear = [c / 12.92 if c <= .04045 else ((c + .055) / 1.055) ** 2.4 for c in channels]
+    return sum(c * weight for c, weight in zip(linear, (.2126, .7152, .0722)))
+
+
+def contrast(first, second):
+    light, dark = sorted((luminance(first), luminance(second)), reverse=True)
+    return (light + .05) / (dark + .05)
+
+
+def readable_color(color, background, minimum=4.5):
+    """Keep the school hue, adjusting only when text needs more contrast."""
+    target = 0 if contrast("#000000", background) > contrast("#ffffff", background) else 255
+    channels = [int(color[i:i+2], 16) for i in (1, 3, 5)]
+    for step in range(101):
+        result = "#" + "".join(f"{round(c + (target - c) * step / 100):02x}" for c in channels)
+        if contrast(result, background) >= minimum:
+            return result
+    raise ValueError("Unable to produce a readable theme color")
+
+
+def school_theme(school):
+    primary, secondary = school["primary"], school["secondary"]
+    for color in (primary, secondary):
+        if not re.fullmatch(r"#[0-9a-fA-F]{6}", color):
+            raise ValueError(f"Invalid school color: {color}")
+    banner = min((primary, secondary), key=luminance)
+    banner = readable_color(banner, "#ffffff")
+    accent = readable_color(primary, "#eeede5")
+    return {
+        "red": accent,
+        "red-dark": readable_color(accent, "#eeede5", 7),
+        "school-heading": readable_color(primary, "#f8f7f2", 3),
+        "school-primary": primary,
+        "school-secondary": secondary,
+        "school-banner": banner,
+        "school-highlight": readable_color(max((primary, secondary), key=lambda c: contrast(c, banner)), banner, 5),
+        "school-muted": readable_color("#b8bdb1", banner, 5),
+    }
 
 
 def make_site():
@@ -71,7 +115,7 @@ def make_site():
             label = f'<a href="{E(url)}">{label}</a>'
         print_honors += f'<li><span>{E(honor["year"])}</span><div><strong>{label}</strong><small>{E(honor["detail"])}</small></div></li>'
     videos = "".join(
-        f'<a class="video-card" href="{E(v["url"])}" target="_blank" rel="noopener noreferrer" aria-label="Watch {E(v["title"])} on MileSplit"><div class="video-visual"><img class="video-still" src="{E(v["thumbnail"])}" alt="" width="620" height="349" loading="lazy"><span class="video-lines" aria-hidden="true"></span><div class="video-topline"><span>2026 OHSAA STATE CHAMPIONSHIPS</span><span>{E(v["duration"])}</span></div><span class="film-event" aria-hidden="true">{E(v["event"])}m</span><div><strong class="film-mark">{E(v["mark"])}</strong><span class="film-caption">{E(v["place"])}</span></div><span class="play-icon">{PLAY}</span></div><div class="video-details"><div><strong>{E(v["title"])}</strong><small>{E(v["subtitle"])}</small></div><span class="watch-link">MileSplit {ARROW}</span></div></a>'
+        f'<a class="video-card" href="{E(v["url"])}" target="_blank" rel="noopener noreferrer" aria-label="Watch {E(v["title"])} on MileSplit"><div class="video-visual"><img class="video-still" src="/{E(v["thumbnail"])}" alt="" width="620" height="349" loading="lazy"><span class="video-lines" aria-hidden="true"></span><div class="video-topline"><span>2026 OHSAA STATE CHAMPIONSHIPS</span><span>{E(v["duration"])}</span></div><span class="film-event" aria-hidden="true">{E(v["event"])}m</span><div><strong class="film-mark">{E(v["mark"])}</strong><span class="film-caption">{E(v["place"])}</span></div><span class="play-icon">{PLAY}</span></div><div class="video-details"><div><strong>{E(v["title"])}</strong><small>{E(v["subtitle"])}</small></div><span class="watch-link">MileSplit {ARROW}</span></div></a>'
         for v in p["videos"]
     )
     contact_url = "mailto:" + p["email"] if p["email"] else p["sources"]["runcruit"]
@@ -81,6 +125,7 @@ def make_site():
     print_supporting = " · ".join(f'{E(m["event"])} {E(m["mark"])} ({E(m["context"]).lower()})' for m in p["supportingMarks"])
     print_resume = f'<article><header class="resume-header"><p class="eyebrow">CLASS OF {E(p["classYear"])} / WOMEN’S TRACK & FIELD / CROSS COUNTRY</p><h1>{E(p["name"])}</h1><p>{E(p["school"])} · {E(p["location"])}</p></header><p class="resume-title">{E(p["headline"])} · Division II</p><div class="resume-marks">{print_marks}</div><div class="resume-supporting">{print_supporting}</div><h2>Championship performances</h2><table><thead><tr><th>MEET</th><th>EVENT</th><th>PLACE</th><th>MARK</th></tr></thead><tbody>{print_rows}</tbody></table><h2>Honors & recognition</h2><ul class="resume-honors">{print_honors}</ul><h2>Academics & athlete profile</h2><div class="resume-academics"><strong>GPA:</strong> {E(p["gpa"])}<br><strong>Academic interests:</strong> {E(p["interests"])}<br><strong>Additional sport:</strong> {E(p["otherSport"])}</div><div class="resume-links"><a href="{E(p["sources"]["athletic"])}">Athletic.net</a><a href="{E(p["sources"]["milesplit"])}">MileSplit</a><a href="{E(p["sources"]["runcruit"])}">Runcruit</a><a href="{E(p["sources"]["videos"])}">Race videos</a></div><p class="resume-footer">{E(p["siteUrl"])}<br>Updated {E(p["updated"])}. Actual marks; full mile and 1600m are distinct. 4×800m mark is a team time.{(" XC 5K is family-reported; result link pending.") if p.get("xcSourcePending") else ""}{("<br>Recruiting contact: " + E(p["email"])) if p["email"] else ""}</p></article>'
     fields = dict(
+        theme_attributes="", theme_color="#a42132", school_title="", school_note="", robots_meta="",
         class_year=E(p["classYear"]), school=E(p["school"]), location=E(p["location"]), headline=E(p["headline"]),
         style_version=hashlib.sha256((DIST / "styles.css").read_bytes()).hexdigest()[:12],
         site_url=E(p["siteUrl"]), primary_marks=marks, supporting_marks=supporting, championship_rows=rows, honor_items=honor_items,
@@ -91,7 +136,29 @@ def make_site():
         arrow=ARROW, arrow_down=DOWN, download=DOWNLOAD, trophy=TROPHY, laurel=LAUREL, calendar=CALENDAR, print_icon=PRINT,
         print_resume=print_resume, **p["sources"]
     )
-    (DIST / "index.html").write_text(Template((ROOT / "template.html").read_text()).substitute(fields))
+    template = Template((ROOT / "template.html").read_text())
+    (DIST / "index.html").write_text(template.substitute(fields))
+    # GitHub Pages serves this universal profile for unrecognized school paths.
+    (DIST / "404.html").write_text(template.substitute(fields | {"robots_meta": '<meta name="robots" content="noindex">'}))
+    for slug, school in SCHOOLS.items():
+        if not re.fullmatch(r"[a-z]+(?:-[a-z]+)*", slug):
+            raise ValueError(f"Invalid school path: {slug}")
+        palette = school_theme(school)
+        style = ";".join(f"--{key}:{value}" for key, value in palette.items())
+        note = school.get("note")
+        school_note = (
+            '<aside class="school-note" aria-labelledby="school-note-title">'
+            f'<h3 id="school-note-title">{E(note["heading"])}</h3><p>{E(note["text"])}</p></aside>'
+        ) if note else ""
+        school_fields = fields | {
+            "theme_attributes": f' data-school="{E(slug)}" style="{style}"',
+            "theme_color": school["primary"],
+            "school_title": f' | {E(school["name"])}',
+            "school_note": school_note,
+        }
+        directory = DIST / slug
+        directory.mkdir(exist_ok=True)
+        (directory / "index.html").write_text(template.substitute(school_fields))
 
 
 def plain(s):
@@ -199,4 +266,4 @@ if __name__ == "__main__":
     DIST.mkdir(exist_ok=True)
     make_site()
     make_pdf()
-    print("Built dist/index.html and the one-page recruiting PDF from profile.json.")
+    print(f"Built the main profile, {len(SCHOOLS)} school pages, default fallback, and one-page PDF.")

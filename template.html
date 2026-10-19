@@ -1,9 +1,10 @@
 <!doctype html>
-<html lang="en">
+<html lang="en"$theme_attributes>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#a42132">
+  <meta name="theme-color" content="$theme_color">
+$robots_meta
   <link rel="canonical" href="$site_url/">
   <meta name="description" content="Lindsey Cochran · Class of 2029 · Big Walnut High School. 2026 OHSAA Division II 1600m state champion. Personal bests, race footage, academics, and verified results.">
   <meta property="og:title" content="Lindsey Cochran | Class of 2029">
@@ -12,11 +13,11 @@
   <meta property="og:url" content="$site_url">
   <meta property="og:image" content="$site_url/assets/lindsey-racing.webp">
   <meta property="og:image:alt" content="Lindsey Cochran racing in her Big Walnut uniform">
-  <title>Lindsey Cochran | Class of 2029 · Track & Field</title>
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="preload" href="assets/display.otf" as="font" type="font/otf" crossorigin>
-  <link rel="stylesheet" href="styles.css?v=$style_version">
-  <script src="app.js" defer></script>
+  <title>Lindsey Cochran | Class of 2029 · Track & Field$school_title</title>
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="/assets/display.otf" as="font" type="font/otf" crossorigin>
+  <link rel="stylesheet" href="/styles.css?v=$style_version">
+  <script src="/app.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to profile</a>
@@ -24,7 +25,7 @@
     <div class="header-inner">
       <a class="brand" href="#main" aria-label="Lindsey Cochran, back to top"><span class="monogram">LC<span>.</span></span><span class="brand-description">LINDSEY COCHRAN<br><span>CLASS OF $class_year</span></span></a>
       <nav aria-label="Profile sections"><a href="#performances">Performances</a><a href="#honors">Honors</a><a href="#races">Race film</a><a href="#academics">Academics</a></nav>
-      <a class="button button-small" href="lindsey-cochran-recruiting.pdf" download>Résumé <span class="pdf-label">PDF</span> $download</a>
+      <a class="button button-small" href="/lindsey-cochran-recruiting.pdf" download>Résumé <span class="pdf-label">PDF</span> $download</a>
     </div>
   </header>
   <main id="main">
@@ -37,7 +38,7 @@
         <div class="hero-actions"><a class="button button-primary" href="#performances">Explore performances $arrow_down</a><a class="text-link" href="$contact_url" target="_blank" rel="noopener noreferrer">$contact_label $arrow</a></div>
       </div>
       <figure class="hero-photo">
-        <img src="assets/lindsey-racing.webp" srcset="assets/lindsey-racing-700.webp 700w, assets/lindsey-racing.webp 1400w" sizes="(max-width:600px) calc(100vw - 40px), (max-width:1256px) 45vw, 515px" alt="Lindsey Cochran racing in her red Big Walnut uniform" width="1400" height="933" fetchpriority="high">
+        <img src="/assets/lindsey-racing.webp" srcset="/assets/lindsey-racing-700.webp 700w, /assets/lindsey-racing.webp 1400w" sizes="(max-width:600px) calc(100vw - 40px), (max-width:1256px) 45vw, 515px" alt="Lindsey Cochran racing in her red Big Walnut uniform" width="1400" height="933" fetchpriority="high">
         <figcaption><span>BIG WALNUT</span><strong>Every lap earned.</strong></figcaption>
       </figure>
     </section>
@@ -51,11 +52,12 @@
       <div class="results-heading"><h3>Championship performances</h3><span class="small-label">2026 SEASON</span></div>
       <div class="table-wrap"><table><caption class="sr-only">Lindsey Cochran’s 2026 championship results with source links</caption><thead><tr><th scope="col">MEET</th><th scope="col">EVENT</th><th scope="col">PLACE</th><th scope="col">MARK</th><th scope="col"><span class="sr-only">Source</span></th></tr></thead><tbody>$championship_rows</tbody></table></div>
       <p class="fine-print">4×800m is the team’s relay time. Select a result to view the published meet record.</p>
+$school_note
       <section class="honors-section" id="honors" aria-labelledby="honors-title">
         <div class="results-heading"><h3 id="honors-title">Honors & recognition</h3><span class="small-label">BEYOND THE RESULTS</span></div>
         <ul class="honors-list">$honor_items</ul>
       </section>
-      <figure class="championship-photo"><img src="assets/state-1600-podium.webp" alt="Lindsey on the first-place podium at the 2026 OHSAA Division II girls 1600m awards ceremony" width="1600" height="747" loading="lazy" decoding="async"><figcaption><span class="small-label">2026 OHSAA STATE CHAMPIONSHIPS</span><strong>At the top of the podium.</strong><p>Division II 1600m state champion<br>4:54.45 · Freshman season</p></figcaption></figure>
+      <figure class="championship-photo"><img src="/assets/state-1600-podium.webp" alt="Lindsey on the first-place podium at the 2026 OHSAA Division II girls 1600m awards ceremony" width="1600" height="747" loading="lazy" decoding="async"><figcaption><span class="small-label">2026 OHSAA STATE CHAMPIONSHIPS</span><strong>At the top of the podium.</strong><p>Division II 1600m state champion<br>4:54.45 · Freshman season</p></figcaption></figure>
     </section>
 
     <section class="races-section" id="races" aria-labelledby="races-title"><div class="container section">
@@ -65,7 +67,7 @@
     </div></section>
 
     <section class="container section about-section" id="academics" aria-labelledby="academics-title">
-      <div class="about-copy"><p class="eyebrow section-eyebrow">03 <span>/</span> BEYOND THE FINISH LINE</p><h2 id="academics-title">Student. Athlete.<br>Looking ahead<span>.</span></h2><p class="bio">$bio</p><a class="text-link" href="lindsey-cochran-recruiting.pdf" download>Download athletic résumé $download</a></div>
+      <div class="about-copy"><p class="eyebrow section-eyebrow">03 <span>/</span> BEYOND THE FINISH LINE</p><h2 id="academics-title">Student. Athlete.<br>Looking ahead<span>.</span></h2><p class="bio">$bio</p><a class="text-link" href="/lindsey-cochran-recruiting.pdf" download>Download athletic résumé $download</a></div>
       <div class="academic-details"><div class="academic-row"><span class="small-label">GRADUATING CLASS</span><strong>$class_year</strong></div><div class="academic-row"><span class="small-label">GPA</span><strong>$gpa</strong></div><div class="academic-row"><span class="small-label">ACADEMIC INTERESTS</span><strong class="interest">$interests</strong></div><div class="academic-row"><span class="small-label">ADDITIONAL SPORT</span><strong class="interest">$other_sport</strong></div></div>
     </section>
 

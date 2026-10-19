@@ -1,0 +1,78 @@
+{
+  "bgsu": {
+    "name": "Bowling Green State University",
+    "primary": "#fd5000",
+    "secondary": "#4f2c1d",
+    "colorSource": "https://www.bgsu.edu/marketing-and-communications/bgsu-graphic-standards-manual/the-official-identity-colors.html",
+    "note": {
+      "heading": "My connection to Bowling Green",
+      "text": "Both of my parents attended Bowling Green, and my brother is currently enrolled at BGSU. That family connection makes Bowling Green especially meaningful to me, and I’d welcome the opportunity to learn more about your program."
+    }
+  },
+  "ohio-state": {
+    "name": "Ohio State University",
+    "primary": "#ba0c2f",
+    "secondary": "#a7b1b7",
+    "colorSource": "https://bux.osu.edu/color/primary-colors/"
+  },
+  "clemson": {
+    "name": "Clemson University",
+    "primary": "#f56600",
+    "secondary": "#522d80",
+    "colorSource": "https://www.clemson.edu/brand/web/color.html"
+  },
+  "indiana": {
+    "name": "Indiana University",
+    "primary": "#990000",
+    "secondary": "#edebeb",
+    "colorSource": "https://licensing.iu.edu/doc/iu-promotional-style-guide.pdf"
+  },
+  "notre-dame": {
+    "name": "University of Notre Dame",
+    "primary": "#0c2340",
+    "secondary": "#c99700",
+    "colorSource": "https://onmessage.nd.edu/athletics-branding/colors/"
+  },
+  "cincinnati": {
+    "name": "University of Cincinnati",
+    "primary": "#e00122",
+    "secondary": "#333333",
+    "colorSource": "https://www.uc.edu/about/marketing-communications/brand-guide/visual-identity/color.html"
+  },
+  "georgia": {
+    "name": "University of Georgia",
+    "primary": "#ba0c2f",
+    "secondary": "#000000",
+    "colorSource": "https://brand.uga.edu/visual-identity/visual-style/"
+  },
+  "illinois": {
+    "name": "University of Illinois Urbana-Champaign",
+    "primary": "#ff5f05",
+    "secondary": "#13294b",
+    "colorSource": "https://brand.illinois.edu/visual-identity/color"
+  },
+  "oregon": {
+    "name": "University of Oregon",
+    "primary": "#007030",
+    "secondary": "#fee11a",
+    "colorSource": "https://communications.uoregon.edu/uo-brand/visual-identity/colors"
+  },
+  "harvard": {
+    "name": "Harvard University",
+    "primary": "#a51c30",
+    "secondary": "#1e1e1e",
+    "colorSource": "https://www.harvard.edu/guidelines/wp-content/uploads/sites/10/2022/11/2021_09_15_harvard_graphic_identity_guidelines_1.pdf"
+  },
+  "brown": {
+    "name": "Brown University",
+    "primary": "#4e3629",
+    "secondary": "#ed1c24",
+    "colorSource": "https://engineering.brown.edu/resources/communications-creative-resources/logo-visual-identity"
+  },
+  "arkansas": {
+    "name": "University of Arkansas",
+    "primary": "#9d2235",
+    "secondary": "#ffffff",
+    "colorSource": "https://includes.uark.edu/examples/approved-colors.html"
+  }
+}

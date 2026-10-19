@@ -24,6 +24,41 @@ layout. `dist/styles.css` includes a condensed browser-print version; the PDF
 download is a separately typeset letter-size document with clickable sources.
 `dist/app.js` only enables the print button; all content and links work without JS.
 
+## School-specific recruiting links
+
+Each link opens the same athlete profile with school colors. Bowling Green also
+includes the family connection note directly after the championship results.
+The main address and PDF stay universal. There is no IP lookup, location prompt,
+cookie, or remembered theme; the path alone selects the page.
+
+| School | Recruiting link |
+| --- | --- |
+| Bowling Green State University | https://lindseycochran.com/bgsu/ |
+| Ohio State University | https://lindseycochran.com/ohio-state/ |
+| Clemson University | https://lindseycochran.com/clemson/ |
+| Indiana University | https://lindseycochran.com/indiana/ |
+| University of Notre Dame | https://lindseycochran.com/notre-dame/ |
+| University of Cincinnati | https://lindseycochran.com/cincinnati/ |
+| University of Georgia | https://lindseycochran.com/georgia/ |
+| University of Illinois Urbana-Champaign | https://lindseycochran.com/illinois/ |
+| University of Oregon | https://lindseycochran.com/oregon/ |
+| Harvard University | https://lindseycochran.com/harvard/ |
+| Brown University | https://lindseycochran.com/brown/ |
+| University of Arkansas | https://lindseycochran.com/arkansas/ |
+
+Edit `schools.json` to change colors or add an optional `note` with `heading` and
+`text`. Use only confirmed, school-specific connections. The `colorSource` fields
+record the university brand guides used for each palette. Text colors are adjusted
+only where necessary for readability; decorative accents retain the supplied
+school colors. No school logos or coach names are included.
+
+The build generates each `dist/<school>/index.html` from the shared template and
+`profile.json`; do not maintain separate copies of race data. School pages load
+with their colors even without JavaScript, and all assets and the PDF resolve
+from the site root. The canonical URL stays the universal profile. Unrecognized
+paths display the default profile via GitHub Pages' custom `404.html` (with an HTTP
+404 status and `noindex`).
+
 ## Content to confirm
 
 - The family supplied an exact GPA of 4.156; weighted/unweighted basis was not
