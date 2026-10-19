@@ -87,7 +87,7 @@ def make_site():
         video_cards=videos, bio=E(p["bio"]), gpa=E(p["gpa"]), gpa_note=E(p["gpaNote"]), interests=E(p["interests"]),
         other_sport=E(p["otherSport"]), updated=E(p["updated"]), contact_url=E(contact_url), contact_label=contact_label,
         season_label=E(p["seasonNote"]["label"]), season_title=E(p["seasonNote"]["title"]), season_text=E(p["seasonNote"]["text"]),
-        email_cta=f'<a class="text-link" href="{E(contact_url)}">{contact_label} {ARROW}</a>' if p["email"] else "",
+        email_cta=f'<a class="text-link" href="{E(contact_url)}" target="_blank" rel="noopener noreferrer">{contact_label} {ARROW}</a>' if p["email"] else "",
         arrow=ARROW, arrow_down=DOWN, download=DOWNLOAD, trophy=TROPHY, laurel=LAUREL, calendar=CALENDAR, print_icon=PRINT,
         print_resume=print_resume, **p["sources"]
     )
