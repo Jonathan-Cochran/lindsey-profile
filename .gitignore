@@ -2,3 +2,8 @@ __pycache__/
 .DS_Store
 .sites-runtime/
 .sites-checkout*
+.venv/
+output/
+tmp/
+.env
+.env.*

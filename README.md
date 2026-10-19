@@ -7,9 +7,15 @@ database, analytics, or browser dependencies are needed to view the profile.
 
 1. Edit `profile.json`. Keep only selected personal bests and championship results.
 2. Update `updated` to the date the information was reviewed.
-3. Run `python3 scripts/build.py` (Python with `reportlab` installed).
-4. Preview with `python3 -m http.server 4173 --directory dist`.
-5. Review the website and the PDF before deploying the updated `dist` directory.
+3. Install dependencies once with `python3 -m pip install -r requirements.txt`.
+4. Run `python3 scripts/build.py`, then `python3 scripts/check_build.py`.
+5. Preview with `python3 -m http.server 4173 --directory dist`.
+6. Review the website and the PDF, commit, and push to `main`.
+
+The GitHub Pages workflow rebuilds and validates the website and PDF on every
+push to `main`, then publishes `dist`. Pull requests run the same build and checks
+without publishing. Deployment does not require a personal access token or any
+repository secrets. The workflow can also be run manually from the Actions tab.
 
 Both formats use the same profile data. `template.html` controls the website
 layout. `dist/styles.css` includes a condensed browser-print version; the PDF
@@ -48,9 +54,31 @@ Do not expand this project into a full meet-results database.
 
 ## Hosting
 
-`.openai/hosting.json` identifies the Sites project. Static assets are in `dist`.
-The website is public for coaches, as approved by the family.
-If a custom domain is connected later, update `siteUrl` and rebuild the PDF.
+The intended primary address is `https://lindseycochran.com`, hosted by GitHub
+Pages. Set the repository's Pages publishing source to **GitHub Actions**, then
+configure `lindseycochran.com` as its custom domain before pointing DNS to GitHub.
+The custom domain setting is managed in GitHub, not a `CNAME` file, because this
+project uses an Actions workflow.
+
+At the domain's DNS provider, configure these records:
+
+| Type | Name | Value |
+| --- | --- | --- |
+| A | @ | 185.199.108.153 |
+| A | @ | 185.199.109.153 |
+| A | @ | 185.199.110.153 |
+| A | @ | 185.199.111.153 |
+| CNAME | www | jonathan-cochran.github.io |
+
+Replace conflicting parking records for `@` and `www`; retain unrelated mail
+records. If using Cloudflare DNS, use DNS-only mode for these records while
+GitHub provisions the certificate. Once DNS is valid and the certificate is
+issued, enable **Enforce HTTPS** in GitHub Pages. The `www` hostname will redirect
+to the primary domain. See GitHub's [custom domain instructions](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site).
+
+`.openai/hosting.json` retains the original Sites project identity. The existing
+Sites URL remains available separately; GitHub Actions only deploys to GitHub
+Pages. Changes pushed to GitHub do not update the old Sites publication.
 
 The complete `dist` directory can also be served by any static host. No private
 credentials belong in this repository. Font licenses are in
