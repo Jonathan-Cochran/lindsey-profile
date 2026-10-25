@@ -85,8 +85,10 @@ paths display the default profile via GitHub Pages' custom `404.html` (with an H
 
 - MileSplit athlete profile: class, school, outdoor 1600m, 800m, full mile, 400m,
   indoor 800m marks, plus race video listings.
-- Athletic.net official result: XC 5K personal best of 18:48.5, second place at
-  Ohio Capital Conference - Capital on October 17, 2026. The direct result link
+- Athletic.net official result: XC 5K personal best of 18:43.4, fifth place in
+  Division 2 Session 2 at OHSAA District - Central - Hilliard Darby on October 24,
+  2026. The mark, place, date, and personal-best designation were checked on the
+  official result page. The direct result link
   is used in the website, browser-print version, and PDF.
 - OHSAA 2026 final results: 1600m first, 800m third, 4x800m second. The relay mark
   is explicitly a team time. PDF source links include relevant page anchors.
