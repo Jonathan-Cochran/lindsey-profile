@@ -66,3 +66,19 @@
 .race-quote{max-width:680px;margin:30px 0 0;padding-left:20px;border-left:2px solid var(--line)}
 .race-quote blockquote{margin:0;font-size:clamp(17px,2vw,20px);font-style:italic;line-height:1.6}
 .race-quote figcaption{margin-top:9px;font-size:11px;color:var(--muted)}
+
+[hidden]{display:none!important}
+.privacy-settings{padding-bottom:24px;font-size:12px;color:var(--muted)}
+.privacy-settings summary{cursor:pointer;font-size:11px;width:fit-content}
+.privacy-copy{max-width:780px;padding-top:8px;line-height:1.8}
+.privacy-copy a,.analytics-banner p a{text-decoration:underline;text-underline-offset:3px}
+.privacy-actions{display:flex;flex-wrap:wrap;gap:10px}
+.privacy-button{border:1px solid var(--ink);padding:10px 14px;min-height:40px;background:var(--paper);color:var(--ink);font-size:11px;cursor:pointer}
+.privacy-button:hover,.privacy-button[aria-pressed=true]{background:var(--ink);color:white}
+.analytics-status{font-weight:700}
+.analytics-banner{position:fixed;z-index:20;left:50%;bottom:18px;transform:translateX(-50%);width:min(850px,calc(100% - 40px));padding:20px 24px;background:var(--paper);border:1px solid var(--line);box-shadow:0 5px 28px #24272526;display:flex;align-items:center;gap:24px}
+.analytics-banner h2{font-family:Profile,Arial,sans-serif;font-size:14px;letter-spacing:0;line-height:1.4}
+.analytics-banner p{font-size:12px;line-height:1.7;margin:6px 0 0;max-width:55ch;color:var(--muted)}
+.analytics-banner .privacy-actions{flex-shrink:0;flex-direction:column}
+@media(max-width:600px){.analytics-banner{bottom:12px;padding:17px 19px;display:block}.analytics-banner .privacy-actions{flex-direction:row;margin-top:13px}.analytics-banner p{font-size:11px}.privacy-settings{font-size:11px}}
+@media print{.privacy-settings,.analytics-banner{display:none!important}}

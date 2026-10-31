@@ -78,6 +78,12 @@ pages.update({slug: (DIST / slug / "index.html").read_text() for slug in schools
 for slug, page in pages.items():
     parser = PageAssets()
     parser.feed(page)
+    if f'data-measurement-id="{profile["analyticsMeasurementId"]}"' not in page or '/analytics.js?v=' not in page:
+        raise ValueError(f"Analytics configuration missing on {slug or 'main'}")
+    if 'googletagmanager.com/gtag/js' in page:
+        raise ValueError("The Google tag must load only after analytics consent")
+    if not {'privacy', 'analytics-prompt-title'} <= parser.ids:
+        raise ValueError(f"Analytics consent and privacy controls missing on {slug or 'main'}")
     instagram_links = [link for link in parser.links if link.get("href") == profile["instagram"]]
     if len(instagram_links) != 2 or any(
         link.get("target") != "_blank" or not {"noopener", "noreferrer"} <= set(link.get("rel", "").split())

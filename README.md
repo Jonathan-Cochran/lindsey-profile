@@ -1,7 +1,8 @@
 # Lindsey Cochran - recruiting profile
 
-Static HTML/CSS website, with a matching one-page US letter PDF. No accounts,
-database, analytics, or browser dependencies are needed to view the profile.
+Static HTML/CSS website, with a matching one-page US letter PDF. No accounts or
+database are needed to view the profile. Optional Google Analytics runs only
+after visitor consent; the complete profile also works without JavaScript.
 
 ## Update the profile
 
@@ -22,7 +23,8 @@ repository secrets. The workflow can also be run manually from the Actions tab.
 Both formats use the same profile data. `template.html` controls the website
 layout. `dist/styles.css` includes a condensed browser-print version; the PDF
 download is a separately typeset letter-size document with clickable sources.
-`dist/app.js` only enables the print button; all content and links work without JS.
+`dist/app.js` enables the print button. `dist/analytics.js` handles optional
+analytics and visitor choices; all profile content and links work without JS.
 
 ## School-specific recruiting links
 
@@ -115,6 +117,58 @@ paths display the default profile via GitHub Pages' custom `404.html` (with an H
 
 The source URLs are stored in `profile.json`; use these as the record of evidence.
 Do not expand this project into a full meet-results database.
+
+## Optional analytics
+
+The family's GA4 web stream is `G-P3HMCFQ70E`, stored in
+`analyticsMeasurementId` in `profile.json`. This is public configuration.
+The versioned analytics script is included on the main page, every school page,
+and the fallback. It never loads Google on localhost or other preview hosts.
+
+Visitors can allow or decline using the non-modal prompt, or change their choice
+under **Privacy & analytics** at the foot of any page. Choices expire after 180
+days. No Google tag or analytics event is sent before acceptance or after a
+saved decline. Withdrawal disables tracking, expires this site's GA cookies,
+and reloads the page to unload Google's running code. Browser storage failures
+fall back to an explicit choice for the current page. Changes in another tab
+are honored. Privacy controls are excluded from the printed resume and PDF.
+
+The tag denies all three advertising-consent categories, disables Google signals
+and ad personalization, limits GA cookies to 180 days without renewal, and sends
+one explicit pageview per load. Measured paths are only the known school path or
+`/`; query strings, fragments, raw contact/destination URLs, link text, and
+referrers are not included in our event payloads. Each event includes a `school`
+label (`default` or the school slug); the built-in Page path dimension also
+separates school pages without any additional GA configuration.
+
+| Event | Meaning |
+| --- | --- |
+| `page_view` | Consenting visit to the main or a school page |
+| `resume_download` | Click on the resume PDF link; not confirmation of a completed download |
+| `race_video_click` | Click to MileSplit footage, with `race` of `1600m` or `800m`; not playback measurement |
+| `evidence_link_click` | Click to a results/recruiting/award source, with a general `provider` label |
+| `recruiting_contact_click` | Recruiting email link selected; not confirmation of a sent email |
+| `instagram_click` | Instagram profile link selected |
+| `resume_print_click` | Print resume button selected; not confirmation of printing |
+
+The family confirmed these GA admin settings on October 31, 2026:
+**Enhanced measurement OFF**, **Google signals OFF**, and **granular location and
+device collection disabled**. Keep enhanced measurement off: the site supplies
+explicit events to avoid duplicate counts and automatic collection of raw link
+URLs. Keep email redaction enabled as an additional safeguard. No Google Ads
+integration is needed. Google still receives technical request information,
+including an IP address; this setup is not a claim of anonymity.
+
+To inspect activity, open GA4's Realtime report, then visit the live site and
+allow analytics. Browser blockers and visitors declining analytics reduce
+recorded traffic. Standard reports may take longer to populate. A visit to a
+school page does not identify a visitor as a coach or prove recruiting interest.
+Optional event parameters such as `school`, `race`, and `provider` can be
+registered as event-scoped custom dimensions for more detailed reports.
+
+Run `node --test scripts/analytics.test.cjs` to check consent, withdrawal,
+cross-tab choices, preview exclusion, and event privacy. GitHub Actions runs
+these tests before publication.
 
 ## Hosting
 

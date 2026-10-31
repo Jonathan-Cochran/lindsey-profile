@@ -34,6 +34,8 @@ jobs:
         run: python scripts/build.py
       - name: Validate published files
         run: python scripts/check_build.py
+      - name: Test analytics consent and event privacy
+        run: node --test scripts/analytics.test.cjs
       - name: Configure GitHub Pages
         if: github.event_name != 'pull_request' && vars.PAGES_ENABLED == 'true'
         uses: actions/configure-pages@v5

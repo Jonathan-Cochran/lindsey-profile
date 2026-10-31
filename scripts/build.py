@@ -84,6 +84,9 @@ def school_theme(school):
 
 def make_site():
     p = PROFILE
+    analytics_id = p.get("analyticsMeasurementId", "")
+    if not re.fullmatch(r"G-[A-Z0-9]+", analytics_id):
+        raise ValueError("Use a valid GA4 measurement ID")
     for key, url in p["sources"].items():
         if urlparse(url).scheme != "https":
             raise ValueError(f"Source {key} requires an HTTPS URL")
@@ -115,7 +118,7 @@ def make_site():
             label = f'<a href="{E(url)}">{label}</a>'
         print_honors += f'<li><span>{E(honor["year"])}</span><div><strong>{label}</strong><small>{E(honor["detail"])}</small></div></li>'
     videos = "".join(
-        f'<a class="video-card" href="{E(v["url"])}" target="_blank" rel="noopener noreferrer" aria-label="Watch {E(v["title"])} on MileSplit"><div class="video-visual"><img class="video-still" src="/{E(v["thumbnail"])}" alt="" width="620" height="349" loading="lazy"><span class="video-lines" aria-hidden="true"></span><div class="video-topline"><span>2026 OHSAA STATE CHAMPIONSHIPS</span><span>{E(v["duration"])}</span></div><span class="film-event" aria-hidden="true">{E(v["event"])}m</span><div><strong class="film-mark">{E(v["mark"])}</strong><span class="film-caption">{E(v["place"])}</span></div><span class="play-icon">{PLAY}</span></div><div class="video-details"><div><strong>{E(v["title"])}</strong><small>{E(v["subtitle"])}</small></div><span class="watch-link">MileSplit {ARROW}</span></div></a>'
+        f'<a class="video-card" data-race-event="{E(v["event"])}m" href="{E(v["url"])}" target="_blank" rel="noopener noreferrer" aria-label="Watch {E(v["title"])} on MileSplit"><div class="video-visual"><img class="video-still" src="/{E(v["thumbnail"])}" alt="" width="620" height="349" loading="lazy"><span class="video-lines" aria-hidden="true"></span><div class="video-topline"><span>2026 OHSAA STATE CHAMPIONSHIPS</span><span>{E(v["duration"])}</span></div><span class="film-event" aria-hidden="true">{E(v["event"])}m</span><div><strong class="film-mark">{E(v["mark"])}</strong><span class="film-caption">{E(v["place"])}</span></div><span class="play-icon">{PLAY}</span></div><div class="video-details"><div><strong>{E(v["title"])}</strong><small>{E(v["subtitle"])}</small></div><span class="watch-link">MileSplit {ARROW}</span></div></a>'
         for v in p["videos"]
     )
     contact_url = "mailto:" + p["email"] if p["email"] else p["sources"]["runcruit"]
@@ -132,6 +135,7 @@ def make_site():
         theme_attributes="", theme_color="#a42132", school_title="", school_note="", robots_meta="",
         class_year=E(p["classYear"]), school=E(p["school"]), location=E(p["location"]), headline=E(p["headline"]),
         style_version=hashlib.sha256((DIST / "styles.css").read_bytes()).hexdigest()[:12],
+        analytics_id=E(analytics_id), analytics_version=hashlib.sha256((DIST / "analytics.js").read_bytes()).hexdigest()[:12],
         site_url=E(p["siteUrl"]), primary_marks=marks, supporting_marks=supporting, championship_rows=rows, honor_items=honor_items,
         video_cards=videos, bio=E(p["bio"]), gpa=E(p["gpa"]), interests=E(p["interests"]),
         other_sport=E(p["otherSport"]), updated=E(p["updated"]), contact_url=E(contact_url), contact_label=contact_label,
