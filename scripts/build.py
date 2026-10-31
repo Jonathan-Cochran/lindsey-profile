@@ -136,6 +136,7 @@ def make_site():
         video_cards=videos, bio=E(p["bio"]), gpa=E(p["gpa"]), interests=E(p["interests"]),
         other_sport=E(p["otherSport"]), updated=E(p["updated"]), contact_url=E(contact_url), contact_label=contact_label,
         season_label=E(p["seasonNote"]["label"]), season_title=E(p["seasonNote"]["title"]), season_text=E(p["seasonNote"]["text"]),
+        season_url=E(p["sources"][p["seasonNote"].get("source", "athletic")]), season_link_label=E(p["seasonNote"].get("linkLabel", "Follow results")),
         email_cta=f'<a class="text-link" href="{E(contact_url)}" target="_blank" rel="noopener noreferrer">{contact_label} {ARROW}</a>' if p["email"] else "",
         instagram_cta=instagram_cta,
         arrow=ARROW, arrow_down=DOWN, download=DOWNLOAD, trophy=TROPHY, laurel=LAUREL, calendar=CALENDAR, print_icon=PRINT,

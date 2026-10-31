@@ -3,7 +3,7 @@
   "classYear": "2029",
   "school": "Big Walnut High School",
   "location": "Sunbury, Ohio",
-  "updated": "October 25, 2026",
+  "updated": "October 31, 2026",
   "siteUrl": "https://lindseycochran.com",
   "email": "11lindsey.cochran@gmail.com",
   "instagram": "https://www.instagram.com/lindsey_cochran_29/",
@@ -21,7 +21,8 @@
     "videos": "https://oh.milesplit.com/athletes/14750556-lindsey-cochran/videos",
     "xc": "https://www.athletic.net/result/5rF62OriBBoeV/",
     "allOhioCriteria": "https://ohsaaweb.blob.core.windows.net/files/Sports/Records/AllOhioSelectionProcessCriteria.pdf#page=3",
-    "sportsAwards": "https://www.dispatch.com/story/sports/high-school/sports-awards/2026/06/15/central-ohio-high-school-sports-awards-spring-nominees-2025-2026/90539349007/"
+    "sportsAwards": "https://www.dispatch.com/story/sports/high-school/sports-awards/2026/06/15/central-ohio-high-school-sports-awards-spring-nominees-2025-2026/90539349007/",
+    "regional": "https://www.athletic.net/CrossCountry/meet/287237/results/1144774"
   },
   "primaryMarks": [
     {
@@ -167,8 +168,10 @@
   ],
   "seasonNote": {
     "label": "Latest result",
-    "title": "XC 5K personal best",
-    "text": "18:43.4 · 5th place at the OHSAA District – Central meet at Hilliard Darby on October 24, 2026. View the official result through the XC 5K mark above."
+    "title": "OHSAA Regional XC — team runner-up",
+    "text": "19:01.2 · 11th place at the OHSAA Regional – Central meet in Pickerington on October 31, 2026. Her finishing kick put her 0.1 seconds ahead of a Granville runner, helping Big Walnut secure second place as a team, 85–87.",
+    "source": "regional",
+    "linkLabel": "Meet results"
   },
   "xcSourcePending": false
 }

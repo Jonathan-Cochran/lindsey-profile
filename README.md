@@ -73,6 +73,7 @@ paths display the default profile via GitHub Pages' custom `404.html` (with an H
   Cropping is handled in CSS; original files remain in the workspace root.
   Race cards use the genuine MileSplit event thumbnails, linked to their hosted footage.
 - `seasonNote` holds the latest significant result or confirmed upcoming competition.
+  Its optional `source` selects a key in `sources`, and `linkLabel` labels that link.
 - `honors` holds recognitions in display order, separately from championship
   finishes. The family supplied the event-specific 2026 indoor and outdoor
   OATCCC All-Ohio honors, OHSAA All-District honors, OCC First Team honors in
@@ -90,6 +91,13 @@ paths display the default profile via GitHub Pages' custom `404.html` (with an H
   2026. The mark, place, date, and personal-best designation were checked on the
   official result page. The direct result link
   is used in the website, browser-print version, and PDF.
+- Athletic.net regional results (October 31, 2026): Lindsey placed 11th in
+  19:01.2 at OHSAA Regional - Central - Pickerington, ahead of Granville's
+  12th-place finisher in 19:01.3. Official team scores show Big Walnut second
+  with 85 points and Granville third with 87. The family described her finishing
+  kick; the published times and scores corroborate the margins. The latest-result
+  note links to the full meet results; the XC PR remains 18:43.4 from districts.
+  Individual result: https://www.athletic.net/result/xoFQqqnIppEl2/.
 - OHSAA 2026 final results: 1600m first, 800m third, 4x800m second. The relay mark
   is explicitly a team time. PDF source links include relevant page anchors.
 - MileSplit New Balance Outdoor Nationals freshman results: full mile twelfth in
