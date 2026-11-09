@@ -97,9 +97,12 @@ paths display the default profile via GitHub Pages' custom `404.html` (with an H
   19:01.2 at OHSAA Regional - Central - Pickerington, ahead of Granville's
   12th-place finisher in 19:01.3. Official team scores show Big Walnut second
   with 85 points and Granville third with 87. The family described her finishing
-  kick; the published times and scores corroborate the margins. The latest-result
-  note links to the full meet results; the XC PR remains 18:43.4 from districts.
+  kick; the published times and scores corroborate the margins.
   Individual result: https://www.athletic.net/result/xoFQqqnIppEl2/.
+- OHSAA state cross country results (November 7, 2026): 20th in 18:47.1 in the
+  Division II girls 5K at Fortress Obetz. Big Walnut placed third with 192 points.
+  The championship entry links to the official results. The latest-result note
+  links to Lindsey's Athletic.net result and the Instagram post supplied by the family.
 - OHSAA 2026 final results: 1600m first, 800m third, 4x800m second. The relay mark
   is explicitly a team time. PDF source links include relevant page anchors.
 - MileSplit New Balance Outdoor Nationals freshman results: full mile twelfth in

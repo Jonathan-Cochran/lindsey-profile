@@ -67,6 +67,8 @@
 .race-quote blockquote{margin:0;font-size:clamp(17px,2vw,20px);font-style:italic;line-height:1.6}
 .race-quote figcaption{margin-top:9px;font-size:11px;color:var(--muted)}
 
+.season-note p a{text-decoration:underline;text-underline-offset:3px}
+
 [hidden]{display:none!important}
 .privacy-settings{padding-bottom:24px;font-size:12px;color:var(--muted)}
 .privacy-settings summary{cursor:pointer;font-size:11px;width:fit-content}

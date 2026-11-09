@@ -90,6 +90,8 @@ def make_site():
     for key, url in p["sources"].items():
         if urlparse(url).scheme != "https":
             raise ValueError(f"Source {key} requires an HTTPS URL")
+    post_url = p["sources"].get(p["seasonNote"].get("postSource"))
+    season_post = f' <a href="{E(post_url)}" target="_blank" rel="noopener noreferrer">Instagram post</a>' if post_url else ""
     if p["email"] and ("@" not in p["email"] or any(c in p["email"] for c in "\r\n?<> ")):
         raise ValueError("Use a plain recruiting email address")
     marks = ""
@@ -141,6 +143,7 @@ def make_site():
         other_sport=E(p["otherSport"]), updated=E(p["updated"]), contact_url=E(contact_url), contact_label=contact_label,
         season_label=E(p["seasonNote"]["label"]), season_title=E(p["seasonNote"]["title"]), season_text=E(p["seasonNote"]["text"]),
         season_url=E(p["sources"][p["seasonNote"].get("source", "athletic")]), season_link_label=E(p["seasonNote"].get("linkLabel", "Follow results")),
+        season_post=season_post,
         email_cta=f'<a class="text-link" href="{E(contact_url)}" target="_blank" rel="noopener noreferrer">{contact_label} {ARROW}</a>' if p["email"] else "",
         instagram_cta=instagram_cta,
         arrow=ARROW, arrow_down=DOWN, download=DOWNLOAD, trophy=TROPHY, laurel=LAUREL, calendar=CALENDAR, print_icon=PRINT,
@@ -234,8 +237,8 @@ def make_pdf():
         text(cols[1], y-5, row["event"], 9)
         text(cols[2], y-5, row["place"], 9, "Helvetica-Bold", red if row["place"] == "1st" else ink)
         link(cols[3], y-5, row["mark"], source_url(row), 9)
-        rule(y-22)
-        y -= 32
+        rule(y-17)
+        y -= 26
     text(left, 295, "Actual marks. Full mile and 1600m are distinct events. 4x800m is the team's relay time.", 7.5, color=muted)
     if p.get("xcSourcePending"):
         text(left, 284, f'XC 5K {p["primaryMarks"][2]["mark"]} is family-reported; published result link pending.', 7.5, color=muted)

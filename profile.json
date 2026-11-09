@@ -3,7 +3,7 @@
   "classYear": "2029",
   "school": "Big Walnut High School",
   "location": "Sunbury, Ohio",
-  "updated": "October 31, 2026",
+  "updated": "November 9, 2026",
   "siteUrl": "https://lindseycochran.com",
   "email": "11lindsey.cochran@gmail.com",
   "instagram": "https://www.instagram.com/lindsey_cochran_29/",
@@ -22,7 +22,10 @@
     "xc": "https://www.athletic.net/result/5rF62OriBBoeV/",
     "allOhioCriteria": "https://ohsaaweb.blob.core.windows.net/files/Sports/Records/AllOhioSelectionProcessCriteria.pdf#page=3",
     "sportsAwards": "https://www.dispatch.com/story/sports/high-school/sports-awards/2026/06/15/central-ohio-high-school-sports-awards-spring-nominees-2025-2026/90539349007/",
-    "regional": "https://www.athletic.net/CrossCountry/meet/287237/results/1144774"
+    "regional": "https://www.athletic.net/CrossCountry/meet/287237/results/1144774",
+    "stateXc": "https://ohsaaweb.blob.core.windows.net/files/Sports/Cross%20Country/2026/gd2.pdf",
+    "stateXcIndividual": "https://www.athletic.net/result/XwFvnjwsppmvQ/",
+    "stateXcPost": "https://www.instagram.com/p/Dfc0QQqiUPM/"
   },
   "primaryMarks": [
     {
@@ -88,6 +91,15 @@
       "mark": "9:08.30",
       "source": "state",
       "page": 15
+    },
+    {
+      "meet": "OHSAA State Cross Country Championships",
+      "division": "Division II · 2026",
+      "event": "XC 5K",
+      "place": "20th",
+      "mark": "18:47.1",
+      "source": "stateXc",
+      "page": 1
     },
     {
       "meet": "New Balance Nationals Outdoor",
@@ -168,10 +180,11 @@
   ],
   "seasonNote": {
     "label": "Latest result",
-    "title": "OHSAA Regional XC — team runner-up",
-    "text": "19:01.2 · 11th place at the OHSAA Regional – Central meet in Pickerington on October 31, 2026. Her finishing kick put her 0.1 seconds ahead of a Granville runner, helping Big Walnut secure second place as a team, 85–87.",
-    "source": "regional",
-    "linkLabel": "Meet results"
+    "title": "OHSAA State XC — 20th place",
+    "text": "Lindsey ran 18:47.1 for 20th in the Division II girls 5K at Fortress Obetz on November 7, 2026. Big Walnut placed third as a team.",
+    "source": "stateXcIndividual",
+    "linkLabel": "Athletic.net result",
+    "postSource": "stateXcPost"
   },
   "xcSourcePending": false,
   "analyticsMeasurementId": "G-P3HMCFQ70E"
